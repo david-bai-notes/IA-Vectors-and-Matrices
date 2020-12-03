@@ -1,0 +1,327 @@
+\section{Determinants and Inverses}
+\subsection{Introduction}
+Consider a linear map $\mathbb R^n\to\mathbb R^n$ given by the matrix $M$.
+We want to define an $n\times n$ matrix $\tilde{M}=\operatorname{adj}M$ and a scalar $\det M$ with
+$$M\tilde{M}=(\det M)I$$
+Furthermore, $\det M$ is the factor by whcih an area in $\mathbb R^2$ or a volumn in $\mathbb R^3$ is scaled.
+If $\det M\neq 0$, then  we will have
+$$M^{-1}=\frac{1}{\det M}\tilde{M}$$
+For $n=2$, we know that
+$$\tilde{M}=
+\begin{pmatrix}
+    M_{22}&-M_{12}\\
+    -M_{21}&M_{11}
+\end{pmatrix},
+\det M=
+\begin{vmatrix}
+    M_{11}&M_{12}\\
+    M_{21}&M_{22}
+\end{vmatrix}
+=M_{11}M_{22}-M_{12}M_{21}
+$$
+works.
+Note that $\det M\neq 0$ if and only if $M\underline{e_1},M\underline{e_2}$ are linearly independent if and only if $\operatorname{Im}M=\mathbb R^2$ if and only if $\operatorname{rank}M=2$.\\
+For $n=3$, we recall that given any $\underline{a},\underline{b},\underline{c}\in\mathbb R^3$, the scalar $[\underline{a},\underline{b},\underline{c}]$ is the volumn of a parallelopiped spanned by $\underline{a},\underline{b},\underline{c}$.
+We can also note that the standard basis vectors obey $[\underline{e_i},\underline{e_j},\underline{e_k}]=\epsilon_{ijk}$.
+Note that for $M$ a real $3\times 3$ matrix, its columns are $M\underline{e_i}=M_{ji}\underline{e_j}$.
+So the volumn is scaled by a factor
+$$[M\underline{e_1},M\underline{e_2},M\underline{e_3}]=M_{i1}M_{j2}M_{k3}[\underline{e_i},\underline{e_j},\underline{e_k}]=M_{i1}M_{j2}M_{k3}\epsilon_{ijk}$$
+We define this to be $\det M$.
+We can also define $\tilde{M}$ by
+$$\underline{R_1}(\tilde{M})=\underline{C_2}(M)\times\underline{C_3}(M)$$
+$$\underline{R_2}(\tilde{M})=\underline{C_3}(M)\times\underline{C_1}(M)$$
+$$\underline{R_3}(\tilde{M})=\underline{C_1}(M)\times\underline{C_2}(M)$$
+So one can see immediately that
+$$(\tilde{M}M)_{ij}=\underline{R_i}(\tilde{M})\cdot\underline{C_j}(M)=\det M\delta_{ij}$$
+as desired.\\
+How about when we consider $n$ in general?
+\subsection{Alternating forms}
+We first want to generalize our $\epsilon$ symbol to higher dimensions by considering the permutation.
+\begin{definition}
+    A permutation $\sigma:\{1,2,\ldots,n\}\to\{1,2,\ldots,n\}$ is a bijection of $\{1,2,\ldots,n\}$ to itself.
+\end{definition}
+So $\{1,2,\ldots,n\}=\{\sigma{1},\sigma{2},\ldots,\sigma{n}\}$.
+It is immediate that the permutations on $n$ letters form a group $S_n$ under composition, and it is easy that $|S_n|=n!$.
+\begin{definition}
+    A permutaion $\tau\in S_n$ is called a transposition of $i,j\in\{1,2,\ldots,n\}$ if $\tau(i)=j,\tau(j)=i,\forall k\neq i,j, \tau(k)=k$.
+    We denote $\tau$ by $(p\ q)$.
+\end{definition}
+\begin{proposition}
+    Any permutation is a product of transpositions.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+The way we write it is not unique, but the number of transpositions is unique modulo $2$.
+\begin{proposition}
+    If some permutation $\sigma$ can be written as the product of $k$ transpositions and the product of $l$ transpositions, then $k\equiv l\pmod{2}$.
+\end{proposition}
+\begin{proof}
+    Will see in groups (actually quite trivial).
+\end{proof}
+\begin{definition}
+    We say the permutation $\sigma$ is even if it can be written as the product of an even number of transpositions, odd if otherwise.
+    We define the sign, or signature function $\epsilon:S_n\to\{1,-1\}$ by
+    $$\epsilon(\sigma)=
+    \begin{cases}
+        1\text{, if $\sigma$ is even}\\
+        -1\text{, otherwise}
+    \end{cases}
+    $$
+\end{definition}
+Note that $\epsilon(\operatorname{id})=0$ and more generally $\epsilon(\sigma\circ\pi)=\epsilon(\sigma)\epsilon(\pi)$ for permutations $\sigma,\pi$.
+\begin{definition}
+    The $\epsilon$ symbol (or tensor) on $n$ letters is defined as
+    $$
+    \epsilon_{ij\ldots kl}=
+    \begin{cases}
+        \epsilon(\sigma)\text{, if $ij\ldots kl$ is a permutation $\sigma$ of $\{1,2,\ldots,n\}$}\\
+        0\text{, otherwise. That is, some indices coincide.}
+    \end{cases}
+    $$
+\end{definition}
+So we now can define the alternating forms.
+\begin{definition}
+    Given vectors $\underline{v_1},\underline{v_2},\ldots,\underline{v_n}$ in $\mathbb R^n$ or $\mathbb C^n$.
+    We define the alternating form to be the scalar
+    $$[\underline{v_1},\underline{v_2},\ldots,\underline{v_n}]=\epsilon_{ij\ldots kl}(\underline{v_1})_i(\underline{v_2})_j\cdots(\underline{v_{n-1}})_k(\underline{v_n})_l$$
+    One can check that the alternating forms when $n=2,3$ are exactly the same as we have defined them before.
+\end{definition}
+Note that the alternating form is multilinear, thus a tensor.
+Also, it is totally antisymmetric: interchanging any two vectors changes the sign.
+Equivalently,
+$$[\underline{v_{\sigma(1)}},\underline{v_{\sigma(2)}},\ldots,\underline{v_{\sigma(n)}}]=\epsilon(\sigma)[\underline{v_1},\underline{v_2},\ldots,\underline{v_n}]$$
+Moreover, $[\underline{e_1},\underline{e_2},\ldots,\underline{e_n}]=1$.\\
+One can see immediately that
+\begin{proposition}
+    If the function $f:(F^n)^n\to F$ where $F=\mathbb R$ or $\mathbb C$ is multilinear, totally antisymmetric and $f(\underline{e_1},\underline{e_2},\ldots,\underline{e_n})=1$, then $f$ is uniquely determined.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{proposition}
+    If some vector(s) is $\underline{v_1},\underline{v_2},\ldots,\underline{v_n}$ is a linear combination of others, then $[\underline{v_1},\underline{v_2},\ldots,\underline{v_n}]=0$.
+\end{proposition}
+\begin{example}
+    In $\mathbb C^4$, let $\underline{v_1}=(i,0,0,2),\underline{v_2}=(0,0,5i,0),\underline{v_3}=(3,2i,0,0),\underline{v_4}=(0,0,-i,1)$, then $[\underline{v_1},\underline{v_2},\underline{v_3},\underline{v_4}]=10i$
+\end{example}
+\begin{proposition}
+    $[\underline{v_1},\underline{v_2},\ldots,\underline{v_n}]\neq 0$ if and only if $\{\underline{v_i}\}$ is an independent set.
+\end{proposition}
+\begin{proof}
+    We have already shown the ``only if'' part, so it remains to show the other direction.
+    If $\{\underline{v_i}\}$ is independent, then it constituted a basis, hence if $[\underline{v_1},\underline{v_2},\ldots,\underline{v_n}]=0$, then by multilinearity the alternating form will be zero everywhere, which is a contradiction.
+\end{proof}
+\begin{definition}[Definition of determinant]
+    Consider $M\in M_{n\times n}(F)$ where $F=\mathbb R$ or $\mathbb C$ with columns $\underline{C_a}$, then the determinant of $M$ is
+    \begin{align*}
+        \det M&=[\underline{C_1},\underline{C_2},\ldots,\underline{C_n}]\\
+        &=[M\underline{e_1},M\underline{e_2},\ldots,M\underline{e_n}]\\
+        &=\epsilon_{ij\ldots kl}M_{i1}M_{j2}\cdots M_{k(n-1)}M_{ln}\\
+        &=\sum_{\sigma\in S_n}\epsilon(\sigma)M_{\sigma(1)1}M_{\sigma(2)2}\cdots M_{\sigma(n)n}
+    \end{align*}
+\end{definition}
+\begin{example}
+    1. The definition of determinant here in general coincides with the cases in $2$ and $3$ dimensional cases.\\
+    2. If $M$ is diagonal, then $\det M$ is the product of all diagonal entries.
+    So $\det I=1$.\\
+    3. If we have
+    $$M=\left(\begin{array}{@{}ccc|c@{}}
+        &&&0\\
+        &A&&\vdots\\
+        &&&0\\
+        \hline
+        0&\dots&0&1
+    \end{array}\right)$$
+    Then $\det M=\det A$
+\end{example}
+\subsection{Properties of Determinants}
+If we multiply one of the columns (or rows) of the matrix $M$ by a scalar $\lambda$ to produce $M'$, we have $\det M'=\lambda\det M$.
+Furthermore, if we interchange two adjascent columns, the determinant is negated.
+We can see these directly from the definitive property of determinants.
+In addition, $\det M\neq 0$ if and only if the columns are linearly independent.
+\begin{proposition}
+    For any $n\times n$ matrix $M$, $\det M=\det M^\top$.\\
+    Equivalently, $[\underline{C_1},\underline{C_2},\ldots,\underline{C_n}]=[\underline{R_1},\underline{R_2},\ldots,\underline{R_n}]$.
+\end{proposition}
+\begin{proof}
+    We have
+    \begin{align*}
+        [\underline{C_1},\underline{C_2},\ldots,\underline{C_n}]&=\sum_{\sigma\in S_n}\epsilon(\sigma)M_{\sigma(1)1}M_{\sigma(2)2}\cdots M_{\sigma(n)n}\\
+        &=\sum_{\sigma\in S_n}\epsilon(\sigma)M_{1\sigma^{-1}(1)}M_{2\sigma^{-1}(2)}\cdots M_{n\sigma^{-1}(n)}\\
+        &=\sum_{\sigma'\in S_n}\epsilon(\sigma')M_{1\sigma'(1)}M_{2\sigma'(2)}\cdots M_{n\sigma'(n)}\\
+        &=[\underline{R_1},\underline{R_2},\ldots,\underline{R_n}]
+    \end{align*}
+    Since the map $\sigma\to\sigma'=\sigma^{-1}$ is an automorphism on $S_n$ and $\epsilon(\sigma)=\epsilon(\sigma')$.
+\end{proof}
+We can evaluate determinants by expanding rows or columns.
+\begin{definition}
+    For $M$ an $n\times n$ matrix,
+    Define $M^{ia}$ be the determinant of the $(n-1)\times (n-1)$ matrix obtained by deleting the row $i$ and column $a$ of $M$.
+    This is called a minor.
+\end{definition}
+\begin{proposition}\label{det_formula}
+    $$\forall a,\det{M}=\sum_i(-1)^{i+a}M_{ia}M^{ia}$$
+    $$\forall i,\det{M}=\sum_a(-1)^{i+a}M_{ia}M^{ia}$$
+\end{proposition}
+\begin{proof}
+    Trivial but see later sections for the proof.
+\end{proof}
+By some trivial computation, we discover
+\footnote{We definitely did not see that coming}
+that matrices having many zeros would be easier to calculate, so it brings us to the ways to simplify the determinants.\\
+The first thing we could do is row/column operations.
+If we modify $M$ by mapping $\underline{C_i}\mapsto \underline{C_i}+\lambda\underline{C_j}, i\neq j$ (or equivalently on rows), then the determinant is not changed.
+This follows immediate from multilinearity and total antisymmetry.\\
+Plus, as we stated above, if we interchange $\underline{C_i},\underline{C_j},i\neq j$ (same for rows), then the determinant changes sign.
+This can help us simplify the calculation greatly since we can produce a lot of $0$'s from there.
+\begin{theorem}
+    For any $n\times n$ matrices $M,N$, $\det(MN)=\det(M)\det(N)$.
+\end{theorem}
+\begin{lemma}
+    $$\epsilon_{i_1i_2\ldots i_n}M_{i_1a_1}M_{i_2a_2}\cdots M_{i_na_n}=\epsilon_{a_1a_2\ldots a_n}\det{M}$$
+\end{lemma}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{proof}[Proof of the multiplicativity of determinants]
+    By the preceding lemma,
+    \begin{align*}
+        \det(MN)&=\epsilon_{i_1i_2\ldots i_n}(MN)_{i_11}\cdots(MN)_{i_nn}\\
+        &=\epsilon_{i_1i_2\ldots i_n}M_{i_1k_1}N_{k_11}\cdots M_{i_nk_n}N_{k_nn}\\
+        &=\epsilon_{i_1i_2\ldots i_n}M_{i_1k_1}\cdots M_{i_nk_n}N_{k_11}\cdots N_{k_nn}\\
+        &=\det{M}\epsilon_{k_1k_2\ldots k_n}N_{k_11}\cdots N_{k_nn}\\
+        &=\det{M}\det{N}
+    \end{align*}
+    As desired.
+\end{proof}
+Note that this would mean that $\det$ is a group homomorphism.
+There are a few consequences of the multiplicative property:
+\begin{proposition}
+    1. If $M$ is invertible, then $\det(M^{-1})=\det(M)^{-1}$.\\
+    2. If $M$ is orthogonal, then $\det(M)=\pm 1$.\\
+    3. If $M$ is unitary, then $|\det(M)|=1$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\subsection{Minors, Cofactors and Inverses}
+\begin{definition}
+    Select a column $\underline{C_a}$ of matrix $M$, we can write $\underline{C_a}=M_{ia}\underline{e_i}$, so
+    \begin{align*}
+        \det M&=[\underline{C_1},\underline{C_2},\ldots,\underline{C_a},\ldots,\underline{C_n}]\\
+        &=[\underline{C_1},\underline{C_2},\ldots,M_{ia}\underline{e_i},\ldots,\underline{C_n}]\\
+        &=M_{ia}[\underline{C_1},\underline{C_2},\ldots,\underline{e_i},\ldots,\underline{C_n}]\\
+        &=:\sum_iM_{ia}\Delta_{ia}
+    \end{align*}
+    So
+    $$\Delta_{ia}=[\underline{C_1},\underline{C_2},\ldots,\underline{e_i},\ldots,\underline{C_n}]$$
+    is called the cofactor.
+    Note that the cofactor is exactly the determinant of the matrix removing the row $i$ and column $a$.
+\end{definition}
+\begin{proof}[Proof of Proposition \ref{det_formula}]
+    We know, then, that
+    $$\Delta_{ia}=(-1)^{i+a}M^{ia}$$
+    by shuffling the rows and columns.
+    Therefore we have
+    $$\det M=\sum_iM_{ia}\Delta_{ia}=\sum_i(-1)^{i+a}M_{ia}M^{ia}$$
+    since columns and rows do not have real difference (we can do a transpose anyways), the two statements are proved.
+\end{proof}
+Now we want to find our adjugate (or adjoint) $\tilde{M}$.
+Note that in our above proof we can observe that $M_{ib}\Delta_{ia}=\det(M)\delta_{ab}$, so we can easily define $\tilde{M}_{ij}=\Delta_{ji}$.
+So $\tilde{M}$ is the transpose of the matrix of cofactors, then the relation above becomes
+$$M\tilde{M}=\det(M)I$$
+as desired.
+This justifies the existence of $\tilde{M}$ and $\det(M)$ in the full generality of $\mathbb C^N$ from beginning of this section.
+\subsection{System of Linear Equations}
+Consider a system of $n$ linear equations in $n$ unknowns $x_i$, written in vector-matrix form $A\underline{x}=\underline{b}$ where $A$ is some $n\times n$ matrix.
+If $\det A$ is nonzero, then $A^{-1}$ exists, which implies an unique solution $\underline{x}=A^{-1}\underline{b}$.
+But what if $\det A$ is zero?\\
+We know that if $\underline{b}\notin\operatorname{Im}A$, then by definition there is no solution.
+But if $\underline{b}\in\operatorname{Im}A$, then the entire (shifted) space $\underline{x_p}+\ker{A}$ where $A\underline{x_p}=\underline{b}$ is exactly all the solutions.
+This can be seen from the linear superposition of the solutions.\\
+Note that the formula $\underline{x_p}+\ker{A}$ also applied to the case for $\det A\neq 0$ since in that case $\ker{A}=\{\underline{0}\}$.
+If $\underline{u_i}$ is a basis for $\ker{A}$, then the general solution is $\underline{x_p}+a_i\underline{u_i}$.
+\begin{example}
+    Consider $A\underline{x}=B$ where
+    $$A=\begin{pmatrix}
+        1&1&a\\
+        a&1&1\\
+        1&a&1
+    \end{pmatrix},\underline{b}=\begin{pmatrix}
+        1\\
+        c\\
+        1
+    \end{pmatrix}$$
+    Now $\det A=(a-1)^2(a+2)$.
+    So if $a\notin \{1,-2\}$, then
+    $$
+    A^{-1}=\frac{1}{(a-1)(a+2)}
+    \begin{pmatrix}
+        -1&a+1&-1\\
+        -1&-1&a+1\\
+        a+1&-1&-1
+    \end{pmatrix}$$
+    So
+    $$\underline{x}=A^{-1}\underline{b}=\frac{1}{(1-a)(a+2)}\begin{pmatrix}
+        2-c-ca\\
+        c-a\\
+        c-a
+    \end{pmatrix},c\in\mathbb R$$
+    Geometrically, this solves to give a point.
+    If $a=1$, then
+    $$A=\begin{pmatrix}
+        1&1&1\\
+        1&1&1\\
+        1&1&1
+    \end{pmatrix}\implies\operatorname{Im}A=\left\{\lambda\begin{pmatrix}
+        1\\
+        1\\
+        1
+    \end{pmatrix}:\lambda\in\mathbb R\right\}$$
+    So there is no solution if $c\neq 1$.
+    For $c=1$, since $(1,0,0)^\top$ would be a particular solution, the solutions form the plane $(1,0,0)^\top+\ker A$, i.e. the general solution is of the form
+    $$\begin{pmatrix}
+        1-\lambda-\mu\\
+        \lambda\\
+        \mu
+    \end{pmatrix},\lambda,\mu\in\mathbb R$$
+    For $c=-2$, by again looking at the image we conclude that $c$ must be $-2$, in which case the same analysis gives us the general solution
+    $$\begin{pmatrix}
+        1+\lambda\\
+        \lambda\\
+        \lambda
+    \end{pmatrix},\lambda\in\mathbb R$$
+\end{example}
+Let $\underline{R_1},\underline{R_2},\underline{R_3}$ be the rows of $A$, then
+$$A\underline{u}=\underline{0}\iff \forall i\in\{1,2,3\},\underline{R_i}\cdot\underline{u}=0$$
+Note that the latter system of equations described planes through the origin.
+We know that the solution of the homogeneous problem is equivalent to finding the kernel of $A$.
+If $\operatorname{rank}A=3$, then we must have $\underline{u}=\underline{0}$ since $\{\underline{R_i}\}$ would be independent.
+If $\operatorname{rank}A=2$, then $\{\underline{R_i}\}$ spans a plane, so the kernel is living along the line of normal to the plane.
+If $\operatorname{rank}A=1$, then the normals to the pairwise spanned planes are parallel, so the kernel is a plane.\\
+Now consider instead $A\underline{u}=\underline{b}$, then it happens iff $\underline{R_i}\cdot \underline{u}=b_i$.
+In this case, if $\operatorname{rank}A=3$, then the normals of the planes described by the the system intersects at a point, thus there is an unique solution.
+If $\operatorname{rank}A=2$, then the planes may intersect, in which case the solution is a line, but it might not be the case.
+If $\operatorname{rank}A=1$, then the planes may coincide, in which case they are all the same, thus we have a plane of solution.
+But again this might not be the case.
+Two of them may coincide but that is not enough.\\
+But how do you solve the equations and find the kernels systematically?
+\subsection{Gaussian Elimination and Echelon Form}
+Consider $A\underline{x}=\underline{b}$ where $\underline{x}\in\mathbb R^n,\underline{b}\in\mathbb R^m$ and $A$ is an $m\times n$ matrix, then we can solve it by Gaussian Elimination.
+In general, we can reorder rows by row operations to rewrite original system in simplier form.
+Note that when we do row operations, we have to do it simultaneously on the matrix and on the vector.
+Our aim is to finally transform the matrix to the following form
+$$M=\begin{pmatrix}
+    M_{11}&\star&\star&\dots&\star&\star&\dots&\star\\
+    0&M_{22}&\star&\dots&\star&\star&\dots&\star\\
+    0&0&M_{33}&\dots&\star&\star&\dots&\star\\
+    \vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+    0&0&0&\dots&M_{kk}&\star&\dots&\star\\
+    0&0&0&\dots&0&0&\dots&0\\
+    \vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+    0&0&0&\dots&0&0&\dots&0
+\end{pmatrix}$$
+Note that the row rank equals the column rank.
+We can use induction to prove that we can indeed use a way to obtain $M$ from $A$ in a finitely many number of row operations.
+Note that $\det A=\pm\det M$

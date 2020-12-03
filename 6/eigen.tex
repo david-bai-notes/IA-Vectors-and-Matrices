@@ -1,0 +1,325 @@
+\section{Eigenvalues and Eigenvectors}
+For a linear map $T:V\to V$ where $V$ is a real or complex vector space, a vector $\underline{v}\neq\underline{0}$ is called an eigenvector of $T$ with eigenvalue $\lambda$ if $T\underline{v}=\lambda\underline{v}$.
+Note that this happens if and only if
+$$A\underline{v}=\lambda\underline{v}\iff (A-\lambda I)\underline{v}=\underline{0}$$
+where $A$ is the matrix of $T$.
+So $\lambda$ is an eigenvalue if and only if $\det(A-\lambda I)=0$ if and only if it is a root of the polynomial
+$$\chi_A(t)=\det(A-tI)$$
+which is a degree $n$ polynomial.
+\begin{definition}
+    For $A$ an $n\times n$ matrix, the characteristic polynomial $\chi_A(t)$ is defined as $\det(A-tI)$.
+\end{definition}
+This gives us a way to find the eigenvalues by looking at the characteristic polynomial and to find the eigenvectors by looking at the kernel of $A-\lambda I$.
+\begin{example}
+    1. Let $V=\mathbb C^3$ and
+    $$A=\begin{pmatrix}
+        2&i\\
+        -i&2
+    \end{pmatrix}$$
+    So $\chi_A(t)=(2-t)^2-1$, so $\lambda$ is $1$ or $3$.
+    For the eigenvalue $\lambda=1$, we find that the eigenvectors are spanned by $(1,i)$, and for $\lambda=3$, the eigenvectors are spanned by $(1,-i)$.
+    \\
+    2. Let $V=\mathbb R^2$, consider the shear
+    $$A=
+    \begin{pmatrix}
+        1&1\\
+        0&1
+    \end{pmatrix}$$
+    So $\chi_A(t)=(1-t)^2$, so $\lambda=1$.
+    The eigenvectors are then spanned by $(1,0)$
+    \\
+    3. Let $V=\mathbb C^2$, and
+    $$U=\begin{pmatrix}
+        \cos\theta&-\sin\theta\\
+        \sin\theta&\cos\theta
+    \end{pmatrix}$$
+    So $\chi_U(t)=t^2-2t\cos\theta+1$, so $\lambda=e^{\pm i\theta}$, so the eigenvectors are spanned by $(1,\pm i)$ respectively.\\
+    4. Consider $V=\mathbb C^n$ and $A=\operatorname{diag}(\lambda_1,\lambda_2,\ldots,\lambda_n)$, then the eigenvalues are $\lambda_i$ and the corresponding eigenvectors are spanned by $\underline{e_i}$.
+\end{example}
+\begin{proposition}
+    1. There exists at least one eigenvalue.
+    In fact, there exists $n$ eigenvalues counting multiplicity.\\
+    2. The trace of the matrix equals the sum of the eigenvalues (counting multiplicity as well).\\
+    3. $\det A=\chi_A(0)$.\\
+    4. If $A$ is real, then non-real eigenvalues occur in conjugates.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{definition}
+    For an eigenvalue $\lambda$ of a matrix $A$, define the eigenspace $E_\lambda$ is the set of all $\underline{v}$ with $A\underline{v}=\lambda\underline{v}$, so $E_\lambda=\ker(A-\lambda I)$.
+    The geometrical multiplicity of $\lambda$ is $m_\lambda=\operatorname{null}E_\lambda$, and the algebraic multiplicity $M_\lambda$ is the multiplicity of $\lambda$ as a root of $\chi_A(t)$.
+    So $\chi_A(t)=(t-\lambda)f(t)$ for $f(\lambda)\neq 0$.
+\end{definition}
+\begin{proposition}\label{alg_ge_geom}
+    $M_\lambda\ge m_\lambda$.
+\end{proposition}
+\begin{proof}
+    Postponed to later.
+\end{proof}
+Note that the strict inequality can happen in many non-trivial cases.
+\begin{example}
+    1. Take
+    $$\begin{pmatrix}
+        -2&2&-3\\
+        2&1&-6\\
+        -1&-2&0
+    \end{pmatrix}$$
+    Then $\chi_A(t)=(5-t)(t+3)^2$, so $5,-3$ are the eigenvalues.
+    By calculation we find that $E_5=\operatorname{span}\{(1,2,-1)^\top\}$ and $E_{-3}=\operatorname{span}\{(-2,1,0)^\top,(3,0,1)^\top\}$, so $M_5=m_5=1,M_{-3}=m_{-3}=2$.\\
+    2. Take
+    $$A=\begin{pmatrix}
+        -3&-1&1\\
+        -1&-3&1\\
+        -2&-2&0
+    \end{pmatrix}$$
+    Then $\chi_A(t)=-(t+2)^3$, so the only eigenvalue is $-2$, but $E_{-2}$ only has dimension $2$, therefore $M_{-2}=3\neq 2=m_{-2}$.\\
+    3. Consider the reflection across some plane through the origin.
+    It reflects every point on the normal without changing direction and fixes every point on the plane.
+    So the only eigenvalues would be $\pm 1$ and $M_{-1}=m_{-1}=1,M_1=m_1=2$.\\
+    4. Consider the generic rotation through some normal.
+    So the only real eigenvalue would be $1$ and $M_1=m_1=1$ since the transformation changes every vector's direction except those on the normal, which it fixes.
+\end{example}
+\begin{proposition}
+    Let $\underline{v_1},\underline{v_2},\ldots,\underline{v_r}$ be eigenvectors of a matrix $A$ with eigenvalues $\lambda_1,\lambda_2,\ldots,\lambda_r$.
+    If the eigenvalues are distinct, then the eigenvectors are linearly independent.
+\end{proposition}
+\begin{proof}
+    Suppose $\underline{w}=\sum_ia_i\underline{v_i}$, then $(A-\lambda I)\underline{w}=\sum_ia_i(\lambda_j-\lambda)\underline{v}$.
+    Let $\underline{w}=\underline{0}$, and if we can find a linear combination where not all $a_i$'s is $0$, then we pick such a linear combination $\underline{0}=\sum_ia_i\underline{v_i}$ such that the number of nonzero $a_i$'s is the least.
+    WLOG in this choice $a_1\neq 0$, then $\underline{0}=(A+\lambda I)\underline{0}=\sum_ia_i(\lambda_j-\lambda_1)\underline{v}$, which contradicts the minimality of the number of nonzero $a_i$ of our choice.
+\end{proof}
+\begin{proof}[Alternative proof]
+    Given a linear relation $\underline{0}=\sum_ia_i\underline{v_i}$, then for any $j$, the consider
+    $$\underline{0}=\prod_{i\neq j}(A-\lambda_iI)\sum_{i=1}^ra_i\underline{v_i}=a_j\underline{v_j}\prod_{i\neq j}(\lambda_j-\lambda_i)$$
+    So $a_j=0$.
+\end{proof}
+\subsection{Diagonalizability}
+\begin{proposition}
+    For an $n\times n$ matrix $A$ acting on $V=\mathbb R^n$ or $\mathbb C^n$, the followings are equivalent:\\
+    1. There exists a basis for $V$ consisting of eigenvectors of $A$.\\
+    2. There exists an $n\times n$ invertible matrix $P$ such that $P^{-1}AP=D$ where is a diagonal matrix whose entries are the eigenvalues.
+\end{proposition}
+If either of these conditions hold, then we say $A$ is diagonalizable.
+\begin{proof}
+    For any matrix $P$, $AP$ has columns $A\underline{C_i}^{(P)}$, and $DP$ has columns
+    $$\lambda_i\underline{C_i}^{(P)}$$
+    so what it is saying is that every column of $P$ is an eigenvector of $A$.
+    So if there is a basis of eigenvectors, we can just take $P$ to be the matrix whose columns are the basis eigenvectors.
+    Conversely, given such a matrix $P$, its columns are a basis for $V$.
+\end{proof}
+\begin{example}
+    1. Consider
+    $$A=
+    \begin{pmatrix}
+        1&1\\
+        0&1
+    \end{pmatrix}$$
+    So we only have one eigenvector, hence $A$ is not diagonalizable.\\
+    2. Consider
+    $$U=
+    \begin{pmatrix}
+        \cos\theta&-\sin\theta\\
+        \sin\theta&\cos\theta
+    \end{pmatrix}$$
+    So it does not have real eigenvalues, but it has $2$ complex eigenvalues with linearly independent eigenvectors, thus it is diagonalizable over $\mathbb C^n$.
+    Indeed, we can let
+    $$P=
+    \begin{pmatrix}
+        1&1\\
+        -i&i
+    \end{pmatrix}$$
+    Then
+    $$P^{-1}UP=\begin{pmatrix}
+        e^{i\theta}&0\\
+        0&e^{-i\theta}
+    \end{pmatrix}$$
+\end{example}
+\begin{proposition}
+    If $A$ has $n$ distinct eigenvalues, then it is disgonalizable.
+\end{proposition}
+\begin{proof}
+    Different eigenvalues give linearly independent eigenvectors.
+\end{proof}
+\begin{proposition}
+    $A$ is diagonalizable if and only if $M_\lambda=m_\lambda$ for each eigenvalue $\lambda$ of $A$.
+\end{proposition}
+\begin{proof}
+    The union of the basis vectors for the eigenspaces would be a basis for the entire space since we would have $\sum_{\lambda}M_\lambda=\sum_{\lambda}m_\lambda=n$.
+\end{proof}
+\begin{example}
+    1. Again use
+    $$A=\begin{pmatrix}
+        -2&2&-3\\
+        2&1&-6\\
+        -1&-2&0
+    \end{pmatrix}$$
+    We already know from previous example that $\lambda=5,3$ and $M_5=m_5=1,M_{-3}=m_{-3}=2$, so $A$ is diagonalizable.
+    Indeed, we have
+    $$P^{-1}AP=\begin{pmatrix}
+        5&&\\
+        &-3&\\
+        &&-3
+    \end{pmatrix},P=\begin{pmatrix}
+        1&-2&3\\
+        2&1&0\\
+        -1&0&1
+    \end{pmatrix}$$
+    2. Use the previous example
+    $$A=\begin{pmatrix}
+        -3&-1&1\\
+        -1&-3&1\\
+        -2&-2&0
+    \end{pmatrix}$$
+    Then $\lambda=-2$ and $M_{-2}=3>m_{-2}=2$, so $A$ is not diagonalizable.
+    Indeed, if it is, then there is some invertible $P$ with $A=P(-2I)P^{-1}=-2I$ which is a contradiction.
+\end{example}
+\begin{definition}
+    Two $n\times n$ matrices $A,B$ are similar if there is some invertible $n\times n$ matrix $P$ such that $A=PBP^{-1}$.
+\end{definition}
+This is trivially an equivalence relation.
+\begin{proposition}
+    If $A,B$ are similar, then $\operatorname{tr}B=\operatorname{tr}A$ and $\det B=\det A$.
+    Also $\chi_B=\chi_A$.
+\end{proposition}
+In fact, if two matrices are similar, then we could get from one to the other by a change of basis.
+The results here then are obvious.
+\begin{proof}
+    $$\operatorname{tr}(B)=\operatorname{tr}(P^{-1}AP)=\operatorname{tr}(APP^{-1})=\operatorname{tr}(A)$$
+    $$\det(B)=\det(P^{-1}AP)=\det(P)^{-1}\det(A)\det(P)=\det(A)$$
+    $$\chi_A(t)=\det(A-tI)=\det(P^{-1})\det(A-tI)\det(P)=\det(B-tI)=\chi_B(t)$$
+    As desired.
+\end{proof}
+Note that if $A$ is duagonalizable, then so is $B$ since they are all in the same equivalence class containing some diagonal matrix.
+\begin{proof}[Proof of Theorem \ref{alg_ge_geom}]
+    Choose an eigenvalue $\lambda$ of an $n\times n$ matrix $A$ with $m_\lambda=r$ and a basis $\underline{v_1},\ldots,\underline{v_r}$ for $E_{\lambda}$.
+    Extend this basis to the entire space by adding vectors $\underline{w_{r+1}},\ldots,\underline{w_n}$.
+    Consider the matrix $P$ with columns $\underline{C_i}(P)=\underline{v_i}$ for $i=1,\ldots,r$ and $\underline{C_a}(P)=w_a$ for $a=r+1,\ldots,n$, then $AP=PB$ where $B$ is of the form
+    $$B=\left(\begin{array}{@{}c|c@{}}
+        \lambda I&*\\
+        \hline
+        0&\hat{B}
+    \end{array}\right)$$
+    Note that $P^{-1}AP=B$, so $\chi_A(t)=\chi_B(t)=(\lambda-t)^r\det(\hat{B}-tI)$, so $M_\lambda\ge m_\lambda$.
+\end{proof}
+\subsection{Diagonalisation of Hermitian and Symmetric Matrices}
+Observe that if $A$ is Hermitian, then $(A\underline{v})^\dagger\underline{w}=\underline{v}^\dagger A\underline{w}$ for any complex vectors $\underline{v},\underline{w}$.
+\begin{proposition}
+    Hermitian matrices have real eigenvalues and orthogonal eigenvectors for distinct eigenvalues.
+    In addition, if the matrix is actually real (hence symmetric), then for each eigenvalue stated above, we can choose real eigenvectors.
+\end{proposition}
+\begin{proof}
+    Let $A$ be a Hemitian matrix and $\lambda$ an eigenvalue of it with eigenvector $\underline{v}$, then
+    $$\bar{\lambda}\underline{v}^\dagger\underline{v}=(A\underline{v})^\dagger\underline{v}=\underline{v}^\dagger A\underline{v}=\lambda\underline{v}^\dagger\underline{v}$$
+    So $\lambda=\bar\lambda$, thus $\lambda$ is real.\\
+    If $\lambda,\mu$ are distinct eigenvalues with eigenvectors $\underline{v},\underline{w}$, then
+    $$\mu\underline{v}^\dagger\underline{w}=\underline{v}^\dagger(A\underline{w})=(A\underline{v})^\dagger\underline{w}=\lambda\underline{v}^\dagger\underline{w}\implies (\lambda-\mu)\underline{v}^\dagger\underline{w}=0$$
+    So $\underline{v}^\dagger\underline{w}=0$ since $\mu\neq\lambda$, thus $\underline{v}\perp\underline{w}$.\\
+    For the last part, just choose the real or imaginary part (at least one of them is nonzero) of the eigenvectors.
+\end{proof}
+\begin{proposition}[Gram-Schmidt Orthogonalization]
+    Given a linearly independent set of vectors $\underline{w_1},\underline{w_2},\ldots,\underline{w_k}$ in $\mathbb C^n$, we can construct a set $\underline{u_1},\underline{u_2},\ldots,\underline{u_k}$ of orthonormal vectors such that $\operatorname{span}(\{\underline{u_i}\})=\operatorname{span}(\{w_i\})$.
+\end{proposition}
+\begin{proof}
+    We do it recursively by
+    $$\underline{u_1}=\frac{1}{\|\underline{v_1}\|}\underline{v_1},\forall j>1,\underline{w_j}^{(1)}=\underline{w_j}-(\underline{u_1}^\dagger \underline{w_j})\underline{u_1}$$
+    and
+    $$\underline{u_r}=\frac{1}{\|\underline{w_r}^{(r-1)}\|}\underline{w_r}^{(r-1)},\forall j>r,\underline{w_j}^{(r)}=\underline{w_j}^{(r-1)}-(\underline{u_r}^\dagger \underline{w_j}^{(r-1)})\underline{u_r}$$
+    Which, as one can easily verify, is valid.
+\end{proof}
+Using Gram-Schmidt, we can convert any basis for some eigenspace to an orthonormal basis $\mathscr B_\lambda$.
+If $\lambda_i$ are distinct eigenvalues of some Hermitian basis, then by choosing this orthonormal basis for all eigenspaces, we have an orthonormal set of eigenvectors.
+\begin{example}
+    1. Take
+    $$A=\begin{pmatrix}
+        2&i\\
+        -i&2
+    \end{pmatrix},A^\dagger=A$$
+    So the eigenvalues are $1,3$ with eigenvectors $2^{-1/2}(1,i)^\top,2^{-1/2}(1,-i)^\top$.
+    Note that these two eigenvectors is an orthonormal basis for $\mathbb R^2$.
+    So we can choose
+    $$P=\frac{1}{\sqrt{2}}\begin{pmatrix}
+        1&1\\
+        i&-i
+    \end{pmatrix}$$
+    Which is unitary and $P^{-1}AP=\operatorname{diag}(1,3)$.\\
+    2. Consider
+    $$A=\begin{pmatrix}
+        0&1&1\\
+        1&0&1\\
+        1&1&0
+    \end{pmatrix}$$
+    which is real and symmetric thus Hermitian and have eigenvalues $-1,2$ where the algebraic multiplicity of $-1$ is $2$.
+    By calculation we find that the geometric multiplicity of $-1$ is also $2$.
+    We can find an orthonormal basis for $E_{-1}$ by the Gram-Schmidt process.
+    For example we can have 
+    $$E_{-1}=\operatorname{span}\{2^{-1/2}(1,-1,0)^\top,6^{-1/2}(1,1,-2)^\top\}$$
+    Also $E_{2}=\operatorname{span}\{3^{-1/2}(1,1,1)^\top\}$, thus we have found an orthonormal eigenbasis for $\mathbb R^3$.
+    We can also find the corresponding (unitary hence orthogonal) $P$ which diagonalizes $A$.
+\end{example}
+\begin{theorem}
+    Any $n\times n$ Hermitian matrix is diagonalizable by an unitary matrix.
+    Equivalently, there is an orthonormal eigenbasis.
+    In particular, for real and symmetric case, we can choose such that the orthonormal basis is real.
+    \label{hermitian_diag}
+\end{theorem}
+\begin{proof}
+    We have already established all of the theorem but the part of the matrix being diagonalizable, so it suffices to show that, which is sadly not examinable, but here goes:\\
+    Consider a Hermitian $A=\mathbb C^n\to\mathbb C^n$.
+    If $V$ is any subspace of $\mathbb C^n$ that is invariant under $A$, then for any $\underline{v_1},\underline{v_2}\in V$ we have $\underline{v_1}^\dagger (A\underline{v_2})=(A\underline{v_1})^\dagger\underline{v_2}$.
+    We shall prove by induction on $m=\dim V\le n$ that such a subspace has an orthonormal basis of eigenvectors of $A$, which shall establish the result by taking $m=n$.
+    As the initial step is trivial, we will show the induction step.\\
+    Given $V$ as above, since we are working in $\mathbb C$, the characteristic equation always has a root, so there is some $\underline{v}\in V$ such that $A\underline{v}=\lambda\underline{v}$ for some $\lambda$.
+    Let $W$ be the subspace $\{\underline{w}\in V:\underline{v}^\dagger\underline{w}=0\}$, then $\dim W=m-1<m$.
+    Now
+    $$\underline{w}\in W\implies \underline{v}^\dagger (A\underline{w})=(A\underline{v})^\dagger\underline{w}=\lambda\underline{v}^\dagger\underline{w}=0\implies A\underline{w}\in W$$
+    So $W$ is invariant under $A$, so by induction hypothesis, there is an orthonormal basis for $W$ of eigenvectors of $A$, say $\{\underline{u_1},\ldots,\underline{u_{m-1}}\}$, then we deem $\underline{u_m}=|\underline{v}|^{-1}\underline{v}$, then $\{\underline{u_1},\ldots,\underline{u_m}\}$ gives an orthonormal basis of $V$, and the proof is done.
+\end{proof}
+\subsection{Quadratic Forms}
+\begin{definition}
+    A quadratic form is a function $\mathcal F:\mathbb R^n\to\mathbb R$ given by $\mathcal{F}(\underline{x})=\underline{x}^\top A\underline{x}$ where $A$ is a real symmetric $n\times n$ matrix.
+    So $\mathcal F(\underline{x})=x_iA_{ij}x_j$.
+\end{definition}
+So by Theorem \ref{hermitian_diag}, we can diagonalize it by an orthogonal matrix $P$.
+Then by letting $\underline{x'}=P^\top\underline{x}$, we have $\mathcal F(\underline{x})=\underline{x'}^\top D\underline{x'}$ where $D=\operatorname{diag}(\lambda_1,\lambda_2,\ldots,\lambda_n)$, so we sau that $\mathcal F$ is diagonalized.
+Note that $\underline{x}=x_i'\underline{u_i}$ where $\underline{u_i}$ is the orthonormal eigenbasis.
+Thus we can interpret what we have done as not changing the vector, but instead changing the basis in which we are working under.
+This basis (and the corresponding coordinate axes) is called the principle axes of the quadratic form.
+\begin{example}
+    1. In $\mathbb R^2$, take
+    $$A=\begin{pmatrix}
+        \alpha&\beta\\
+        \beta&\alpha
+    \end{pmatrix}$$
+    So we can diagonalize it by $\lambda_1=\alpha+\beta$, $\lambda_2=\alpha-\beta$ and $\underline{u_1}=2^{-1/2}(1,1)^\top,\underline{u_2}=2^{-1/2}(1,-1)^\top$
+    Hence $\underline{x'}=(2^{-1/2}(x_1+x_2),2^{-1/2}(x_1-x_2))^\top$.
+    For example, if we take $\alpha=3/2,\beta=-1/2$, then the quadratic form defines an ellipse.
+    If we let $\beta=3/2,\alpha=-1/2$, then the quadratic from would be a hyperbola.\\
+    2. In $\mathbb R^3$, by a suitable choice of basis, $\mathcal F(\underline{x})=\lambda_1x_1^2+\lambda_2x_2^2+\lambda_3^2$.
+    If $\lambda_i>0$, the graph is an ellipsoid (a sphere stretched towards the directions of the axes).
+    Otherwise, for example, the matrix that we have introduced in a former example 
+    $$A=\begin{pmatrix}
+        0&1&1\\
+        1&0&1\\
+        1&1&0
+    \end{pmatrix}$$
+    has eigenvalues $-1,2$ where the algebraic multiplicity of $-1$ is $2$.
+    So on the principle axes $\mathcal F_A(\underline{x})=-x_1^2-x_2^2+2x_3^2$.
+    Hence it gives a hyperboloid (obtained by rotating a hyperbola).
+\end{example}
+It has important application when we use the Hessians as the quadratic Form.
+\subsection{Cayley-Hamilton Theorem}
+\begin{theorem}[Cayley-Hamilton]
+    $\chi_A(A)=0$.
+\end{theorem}
+\begin{remark}
+    If $c_0I+c_1A+\cdots+c_nA^n$, then $A(c_1I+C_2A+\cdots+c_nA^{n-1})=-c_0I$.
+    So if $c_0=\det A\neq 0$, we have
+    $$A^{-1}=-\frac{1}{c_0}(c_1I+C_2A+\cdots+c_nA^{n-1})$$
+\end{remark}
+\begin{proof}
+    The general $2\times 2$ case is immediate.
+    The case for diagonalizable matrices is also obvious.
+    The general case can be deal with a continuity argument or using modules.
+    A proof by basic algebra is also presented in lecture but is deemed not elegant enough by the author, hence is omitted.
+\end{proof}

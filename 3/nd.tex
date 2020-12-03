@@ -1,0 +1,192 @@
+\section{Vectors in Euclidean Spaces of High Dimensions}
+\subsection{Vectors in the Real Vector spaces}
+If we regard $\mathbb R^n$ algebraically, i.e. see vectors as just a set of components, then it is easy to generalize from $3$ to $n$ dimensions.
+\begin{definition}
+    Let $\mathbb R^n$ be the set of real $n$-tuples.
+    We define addition by $(x_1,x_2,\ldots,x_n)+(y_1,y_2,\ldots,y_n)=(x_1+y_1,x_2+y_2,\ldots, x_n+y_n)$ and scalar multiplication by $\lambda(x_1,x_2,\ldots,x_n)=(\lambda x_1,\lambda x_2,\ldots,\lambda x_n)$.\\
+    So we can define linear combinations and the notion of parallel similarly.
+\end{definition}
+For any $\underline{x}\in\mathbb R^n$, we can write $\underline{x}=\sum_ix_i\underline{e_i}$ where $\underline{e_i}$ is a set of orthorgonal basis.
+For example, we can take $e_1=(1,0,\ldots,0), e_2=(0,1,\ldots,0), \ldots, e_n=(0,0,\ldots,1)$.
+This is called the standard basis of $\mathbb R^n$.\\
+We can define the inner (dot) product in a similar way:
+\begin{definition}
+    The inner product (aka scalar product, dot product) is defined by
+    $$\underline{x}\cdot\underline{y}=\sum_ix_iy_i$$
+\end{definition}
+We have a few properties for the inner products, which is basically analogous to the case in the $3$-dimensional case.
+\begin{proposition}
+    1. The inner product is symmetric.\\
+    2. The inner product is bilinear.\\
+    3. $\underline{x}\cdot\underline{x}\ge 0$ and the equality hold if and only if $\underline{x}=\underline{0}$.
+    That is, it is positive definite.
+    We thus define the length or norm $|\underline{x}|$ to be $\sqrt{\underline{x}\cdot\underline{x}}$.
+    4. The standard basis in $\mathbb R^n$ is an orthonormal basis.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{theorem}[Cauchy-Schwartz Inequality]
+    $$|\underline{x}\cdot\underline{y}|\le |\underline{x}||\underline{y}|$$
+    The equality hold if and only if $\underline{x},\underline{y}$ are parallel to each other.
+\end{theorem}
+The deduction from this is that we can define the angle between two vectors by examining the ratio between the right and left hand side of the inequality.\\
+We can also have the triangle inequality, as one may expect norms to satisfy.
+\begin{proof}
+    Consider
+    $$0\le|\underline{x}-\lambda\underline{y}|^2=|x|^2-2\lambda\underline{x}\cdot\underline{y}+\lambda^2|y|^2$$
+    Taking this as a quadratic in $\lambda$, we have
+    $$\delta=4(x\cdot y)^2-4|x|^2|y|^2\le 0\implies|\underline{x}\cdot\underline{y}|\le |\underline{x}||\underline{y}|$$
+    The equality holds if and only if $\delta=0\iff 0=|\underline{x}-\lambda\underline{y}|^2\iff\underline{x}\parallel\underline{y}$.
+\end{proof}
+\begin{theorem}
+    $|\underline{x}+\underline{y}|\le|\underline{x}|+|\underline{y}|$
+\end{theorem}
+\begin{proof}
+    Square both sides and use Cauchy-Schwartz.
+\end{proof}
+Note that by $\underline{x}\cdot\underline{y}$, we can think of $\underline{x},\underline{y}$ as both row and column vectors, since it doesn't matter.
+But still if we take them as for example column vectors, then their transposes are row vectors, so $\underline{x}\cdot\underline{y}=\underline{x}^\top\underline{y}$.\\
+The algebraic definition of of the inner product can be also written by $\delta_{ij}$, so it gives us the initiative to generalize the summation convention.
+In $\mathbb R^3$, we also have an algebraic definition of cross product. but we cannot really generalize it to $\mathbb R^n$.
+We have a generalization of $\epsilon$ though, which is also antisymmetric.\\
+But in $\mathbb R^2$, this generalization gives $\epsilon_{ij}$, where we can define a product by
+$$[\underline{a},\underline{b}]=\epsilon_{ij}a_ib_j=a_1b_2-a_2b_1$$
+Geometrically, this gives the signed area of the parallelogram that $a,b$ defined.\\
+In comparison, $[\underline{a},\underline{b},\underline{c}]=\underline{a}\cdot(\underline{b}\times\underline{c})=\epsilon_{ijk}a_ib_jc_k$ is the volume of the size of a parallelopiped that these three vectors construct.
+\subsection{Axioms of Real Vector Spaces}
+\begin{definition}
+    Let $V$ be a set of objects called vectors with operations:\\
+    1. $\underline{v}+\underline{w}\in V$.\\
+    2. $\lambda\underline{v}\in V$.\\
+    For $\underline{v},\underline{w}\in V, \lambda\in\mathbb R$.\\
+    Then $V$ is called a real vector space if $(V,+,\underline{0})$ is an abelian group addition\\
+    1. $\lambda (\underline{v}+\underline{w})=\lambda\underline{v}+\lambda\underline{w}$.\\
+    2. $(\lambda+\mu)\underline{v}=\lambda\underline{v}+\mu\underline{v}$.\\
+    3. $(\lambda\mu)\underline{v}=\lambda(\mu(\underline{v}))$.\\
+    4. $1\underline{v}=\underline{v}$.\\
+    where $\lambda,\mu\in\mathbb R, \underline{v},\underline{w}\in V$
+\end{definition}
+\begin{definition}
+    For any vectors $\underline{v_1},\underline{v_2},\ldots\underline{v_r}\in V$, we can form a linear combination
+    $$\sum_{i=1}^ra_i\underline{v_i}$$
+    where $a_i\in\mathbb R$.
+    The span of these vectors $\operatorname{span}\{v_1,v_2,\ldots,v_r\}$ consists of all linear combinations of these vectors.\\
+    The span is a subspace, that is, a subset of the vector space that is itself a vector space under the same way of vector addition and scalar multiplication.
+\end{definition}
+It is immediate that nonempty subset $U\subseteq V$ is a subspace if and only if $\operatorname{span} U=U$.
+\begin{example}
+    Take $V=\mathbb R^3$, then any line or plane through the origin is a subspace, but a line or plane that does not contain the origin is not since \underline{0}=$\underline{v}+(-1)\underline{v}\in\operatorname{span}\{\underline{v}\}$.
+\end{example}
+\begin{definition}
+    A set of vectors $\underline{v_1},\underline{v_2},\ldots,\underline{v_r}$, a linear relation of them is an equation
+    $$\sum_{i=1}^r\lambda_i\underline{v_i}=\underline{0}$$
+    If the equation if true only if $\lambda_i=0$ for every $i$, then the vectors are called linearly independent and that they obey only the trivial linear relation.
+    And we say this set of vectors is a independent set.\\
+    Otherwise, we say they are linearly dependent, and the set of vectors a dependent set.
+\end{definition}
+\begin{example}
+    1. So for example, if we take $V=\mathbb R^2$ and consider the set $(0,1),(1,0),(0,2)$.
+    It is a dependent set since $2(0,1)-(0,2)=(0,0)$.\\
+    2. Any set containing $\underline{0}$ is dependent.\\
+    3. $\{\underline{a}\}$ is independent if and only if $\underline{a}\neq\underline{0}$.\\
+    4. $\{\underline{a},\underline{b}\}$ is independent if and only if $\underline{a}\nparallel\underline{b}$.
+\end{example}
+\begin{definition}
+    A function $\cdot:V\times V\to\mathbb R$ is called an inner product on $V$ if and only if:\\
+    1. $\underline{v}\cdot\underline{w}=\underline{w}\cdot\underline{v}$.\\
+    2. It is bilinear.\\
+    3. $\underline{v}\cdot\underline{v}\ge 0$ and the equality hold if and only if $\underline{v}=\underline{0}$.
+\end{definition}
+\subsection{Basis and Dimension}
+For general vector spaces, a basis $\mathscr{B}$ is a independent set of vectors such that $\operatorname{span}\mathscr{B}=V$.
+Given this property, it is trivial that the coefficients of any vector as a linear combination of elements in $\mathscr{B}$ are unique.
+\begin{example}
+    The standard basis for $\mathbb R^n$ consisting of
+    $$\underline{e_1}=(1,0,\ldots,0),\underline{e_2}=(0,1,\ldots,0),\ldots,\underline{e_n}=(0,0,\ldots,1)$$
+    is a basis.
+    There are many other basis can be chosen though.
+    For example, in $\mathbb R^2$, $\{(1,0),(1,1)\}$, $\{(1,-1),(1,1)\}$ or simply any $\{\underline{a},\underline{b}\}$ that are not parallel would be a basis.
+\end{example}
+\begin{theorem}
+    If $\{\underline{e_1},\underline{e_2},\ldots.\underline{e_n}\}$ and $\{\underline{f_1},\underline{f_2},\ldots.\underline{f_m}\}$, then $m=n$.
+\end{theorem}
+It follows that we can define the following
+\begin{definition}
+    The number of vectors in a basis in a vector space is called its dimension.
+    So with this definition, $\mathbb R^n$ has dimension $n$.
+\end{definition}
+Now we can prove the theorem.
+\begin{proof}
+    Note that we can find coefficients $A_{ai}$ such that $\underline{f_a}=\sum_iA_{ai}\underline{e_i}$ for each $a$.
+    Similarly, $\underline{e_i}=\sum_aB_{ia}\underline{f_a}$.\\
+    Then $\underline{f_a}=\sum_b(\sum_iA_{ai}B_{ib})\underline{f_b}$ and $\underline{e_i}=\sum_j(\sum_aB_{ia}A_{aj})\underline{e_j}$.
+    So $\sum_iA_{ai}B_{ib}=\delta_{ij}$ and $\sum_aB_{ia}A_{aj}=\delta_{ij}$.\\
+    $\sum_{i,a}A_{ai}B_{ia}=\sum_i\delta_{ii}$ and $\sum_{i,a}A_{ai}B_{ia}=\sum_a\delta_{aa}$, thus $n=m$.
+\end{proof}
+In fact we did secretly used traces, but we have presented it within the scope of this course.
+The proof in the general case can be done elegantly using matrices.\\
+We can also apply our notions to the following:
+\begin{proposition}
+    Let $V$ be a vector space of dimension $n$.\\
+    1. If $Y=\{\underline{w_1},\underline{w_2},\ldots,\underline{w_m}\}$ spans $V$, then $m\ge n$ and if $m>n$ we can remove an element from $Y$ such that the new set of vectors still spans $V$.
+    Thus we can continue doing it till it becomes a basis.\\
+    2. If $X=\{\underline{u_1},\underline{u_2},\ldots,\underline{u_k}\}$ be an independent set of vectors, then $k\le n$ and if $k<n$ we can add vector to $X$ until we have a basis.
+\end{proposition}
+\begin{proof}
+    1. If $Y$ is linearly independent, then we are done and $m=n$.
+    Otherwise, there is some linear relation $\sum_i\lambda_i\underline{w_i}=0$ such that $\exists i, \lambda_i\neq 0$.
+    WLOG $i=m$, then $\underline{w_m}=\lambda_m^{-1}(\sum_{i,i\neq m}\underline{w_i})$.
+    So $Y'=Y\setminus\{\underline{w_m}\}$ spans $V$.
+    We can repeat this till it becomes independent, i.e. we obtain a basis.\\
+    2. If $X$ spans $V$, we are done and then $k=m$.
+    Otherwise, there is some $\underline{u_{k+1}}\in V\setminus\operatorname{span}X$, then $X\cup\{\underline{u_{k+1}}\}$ is still independent.
+    Indeed, if there is some nontrivial linear relation $\sum_i\mu_i\underline{u_i}=0$, then $\mu_{k+1}\neq 0$ since $X$ is independent, but then $\underline{u_{k+1}}$ can be written as a linear combination of $\underline{u_i}$ for $i\in\{1,2,\ldots,k\}$, contradiction.\\
+    So we can do it over again and obtain a basis at last.
+\end{proof}
+Note that the basis does not use nor depend on the inner product structure of the vector space.
+But we can make use of it to obtain an orthorgonal basis.
+\begin{definition}
+    A basis is called orthorgonal if they are pairwisely orthorgonal.
+\end{definition}
+\begin{proposition}
+    Any set of pairwise orthogonal vectors is independent.
+\end{proposition}
+\begin{proof}
+    Easy.
+\end{proof}
+\subsection{Vectors in the Complex Vector Space}
+\begin{definition}
+    Let $\mathbb C^n$ consist of all complex $n$-tuples.
+    We define the vector space by taking the vector addition and scalar multiplication analogously to the $\mathbb R^n$ case.
+\end{definition}
+Taking real scalars in scalar multiplication, then $\mathbb C^n$ is just a real vector space of dimension $2n$.
+Taking complex scalars, $\mathbb C^n$ is a complex vector space.\\
+The definitions of linear combinations, linear independence, basis, dimensions are all analogous.
+Consider
+$$(z_1,\ldots,z_n)=(x_1+iy_1,\ldots,x_n+iy_n)=(x_1,\ldots,x_n)+i(y_1,\ldots,y_n)$$
+then $\underline{e_j}$ and $i\underline{e_j}$ gives a basis for $\mathbb C^n$ as a real vector space.
+And the $\underline{e_j}$ is a basis for $\mathbb C^n$ as a complex vector space.
+We view $\mathbb C_n$ to be over $\mathbb C$ unless otherwise stated.
+\begin{definition}
+    The inner product on $\mathbb C^n$ is defined by
+    $(\underline{z},\underline{w})=\sum_{j}\bar{z}_jw_j$
+\end{definition}
+\begin{proposition}
+    The complex inner product is:\\
+    1. Hermitian, $(\underline{z},\underline{w})=\overline{(\underline{w},\underline{z})}$.\\
+    2. Anti-linear, $(\underline{z},\lambda\underline{w}+\lambda'\underline{w'})=\lambda(\underline{z},\underline{w})+\lambda'(\underline{z},\underline{w'})$ and $(\lambda\underline{z}+\lambda'\underline{z'},\underline{w})=\bar\lambda(\underline{z},\underline{w})+\bar\lambda'(\underline{z'}+\underline{w})$.\\
+    3. Positive definite.
+\end{proposition}
+The geometric content of this sort of inner product is a little more subtle than in the real case.
+\begin{example}
+    Consider the complex inner product on $\mathbb C$, that is $n=1$, since there is only one component, $(z,w)=\bar zw$.
+    Suppose $z=a_1+ia_2,w=b_1+ib_2$ where $a_1,a_2,b_1,b_2\in\mathbb R$.
+    Let $\underline{a}=(a_1,a_2),\underline{b}=(b_1,b_2)$, then
+    $$(z,w)=a_1b_1+a_2b_2+i(a_1b_2-a_2b_1)=\underline{a}\cdot\underline{b}+i[\underline{a},\underline{b}]$$
+\end{example}
+Given the positive definite property, we can define the length or norm $|\underline{z}|$ for any $\underline{z}\in\mathbb C^n$ by $|\underline{z}|=\sqrt{(\underline{z},\underline{z})}$.
+We still say that two complex vectors are orthorgonal if their (complex) inner product vanishes.
+In this way, the standard basis for $\mathbb C^n$ is orthorgonal.\\
+If $\underline{z_1},\underline{z_2},\ldots,\underline{z_k}$ are nonzero and orthorgonal, then they are linearly independent.\\
+Notationally, we think of the vectors in $\mathbb C^n$ as column vector, and the Hermitian conjugate $\underline{z}^{\dagger}$ the row vector consisting of the conjugates of the entries.

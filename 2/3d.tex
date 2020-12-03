@@ -1,0 +1,276 @@
+\section{Vectors in 3-Dimentional Euclidean Space}
+A vector is a quantity with magnitude (length/size) and direction.
+Examples: Force, momentum, electric \& magnetic fields, etc.
+All these examples are modelled on position.
+In this chapter, we adopt a geometric approach to position vectors in $\mathbb R^3$ based on the Euclidean notions of geometry (points, lines, planes, lengths, angles, etc.)\\
+We choose a point $O$ as origin, then points $A$ and $B$ have position vectors
+$$\underline{a}=\overrightarrow{OA}, \underline{b}=\overrightarrow{OB}$$
+We define the magnitude of a vector by $|\underline{a}|=|\overrightarrow{OA}|$ and we denote $O$ by $\underline{0}$.
+\subsection{Vector addition and Scalar Multiplication}
+Given vectors $\underline{a},\underline{b}$ denoting points $A,B$, we construct the parallelogram $OACB$, so we define $\underline{a}+\underline{b}=\underline{c}$ where $\underline{c}=\overrightarrow{OC}$.
+One should note that we have already used the parallel postulate here.\\
+Given $\underline{a}$ which is the position vector of point $A$ and a scalar $\lambda\in\mathbb R$, $\lambda\underline{a}$ is the position of point on the straight line $OA$ where $|\lambda\underline{a}|=|\lambda||\underline{a}|$.
+It changes direction if and only if $\lambda$ is negative.
+Note that $\{\lambda\underline{a}:\lambda\in\mathbb R\}$ is the set of all points on the straight line $OA$.
+\begin{proposition}
+    For any $\underline{a}$, $\underline{a}+\underline{0}=\underline{0}+\underline{a}=\underline{a}$.\\
+    For any $\underline{a}$, $\underline{a}+(-\underline{a})=(-\underline{a})+\underline{a}=\underline{0}$.\\
+    Also, vector addition is associative and commutative.
+    That is, the set of vectors gives an abelian group under vector addition.
+\end{proposition}
+\begin{proof}
+    Trivial. Consider a parallelopiped for associativity.
+\end{proof}
+\begin{proposition}
+    $\lambda(\underline{a}+\underline{b})=\lambda\underline{a}+\lambda\underline{b}$.\\
+    $(\lambda+\mu)\underline{a}=\lambda\underline{a}+\mu\underline{a}$.\\
+    $\lambda(\mu\underline{a})=(\lambda\mu)\underline{a}$
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\subsection{Linear Combination and Span}
+$\alpha\underline{a}+\beta\underline{b}$ where $\alpha,\beta\in\mathbb R$ is called a linear combination of $\underline{a},\underline{b}$.
+We can easily extend this definition to an arbitrary set of vectors.
+\begin{definition}
+    We define $\operatorname{span}(S)$ to be the collection of all linear combinations of vectors in $S$.
+\end{definition}
+We say $\underline{a},\underline{b}$ are parallel if $\underline{a}=\lambda \underline{b}$ or $\underline{b}=\lambda\underline{a}$ for some $\lambda\in\mathbb R$.
+In this case, we write $\underline{a}\parallel\underline{b}$\\
+If $\underline{a}\nparallel\underline{b}$, then $\operatorname{span}(\{\underline{a},\underline{b}\})$ is a plane.
+\subsection{Scalar Dot Product}
+\begin{definition}
+    Let $\theta$ be the angle betweeen $\underline{a},\underline{b}$, then
+    $$\underline{a}\cdot\underline{b}=|\underline{a}||\underline{b}|\cos\theta$$
+    If either of them is $\underline{0}$, then their dot product is $\underline{0}$.
+\end{definition}
+\begin{proposition}
+    $\underline{a}\cdot\underline{b}=\underline{b}\cdot\underline{a}$.\\
+    $\underline{a}\cdot\underline{a}=|\underline{a}|^2\ge 0$ and the equality sign applies if and only if $\underline{a}=0$.\\
+    Also $(\lambda\underline{a})\cdot\underline{b}=\lambda(\underline{a}\cdot\underline{b})$ and $\underline{a}\cdot(\underline{b}+\underline{c})=\underline{a}\cdot\underline{b}+\underline{a}\cdot\underline{c}$
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{definition}
+    We say $\underline{a}$ and $\underline{b}$ are perpndicular, written as $\underline{a}\perp\underline{b}$ if $\underline{a}\cdot\underline{b}=0$
+\end{definition}
+Considering the case $\underline{a}\neq\underline{0}$, then
+$$\frac{\underline{a}\cdot\underline{b}}{|\underline{a}|}=|b|\cos\theta=\underline{u}\cdot\underline{b}, \underline{u}=\frac{1}{|\underline{a}|}\underline{a}$$
+which is the component of $\underline{b}$ along $\underline{a}$.
+\subsection{Orthonormal Basis}
+Choose vectors $\underline{e_1},\underline{e_2},\underline{e_3}$ that are orthonormal, which means that any two of them are perpendicular to each other and that their magnitudes are all $1$.
+Note that this is equivalent to the choice of Cartesian axes along the three directions..
+Also $\{\underline{e}_i\}$ is a basis, so any vector can be expressed as some linear combination of them.
+$$\underline{a}=a_1\underline{e_1}+a_2\underline{e_2}+a_3\underline{e_3}$$
+Also, each component is uniquely determined.
+$$\underline{a}\cdot\underline{e_i}=a_i$$
+So we can describe each vector as a row or column vector $\underline{a}=(a_1,a_2,a_3)$.
+Note as well that $\underline{a}\cdot\underline{b}=\sum_i(a_ib_i)\underline{e_i}$, so $|\underline{a}|^2=\sum_ia_i^2$.
+We write $\underline{e_1}=\underline{i},\underline{e_2}=\underline{j}, \underline{e_3}=\underline{k}$.
+\subsection{Vector/Cross Product}
+\begin{definition}
+    Given nonparallel vectors $\underline{a},\underline{b}$.
+    Let $\theta$ be the angle between them, measured in the sense that it is relative to a unit normal $\underline{n}$ to the plane they span by the ``right-handed sense'', then we define
+    $$\underline{a}\times\underline{b}=|\underline{a}||\underline{b}|\sin(\theta)\underline{n}$$
+    This is called the vector product or cross product of $\underline{a}$ and $\underline{b}$.
+\end{definition}
+Here $\underline{n}$ can only be defined when $\underline{a}\nparallel\underline{b}$.
+We define $\underline{a}\times\underline{b}=0$ otherwise, since neither $\theta$ nor $\underline{n}$ is well defined in this case.
+Note as well that changing sign of $\underline{n}$ does not change $\sin\theta$.
+\begin{proposition}[Properties of cross product]
+    1. $\underline{a}\times\underline{b}=-\underline{b}\times\underline{a}$.\\
+    2. $\lambda(\underline{a}\times\underline{b})=(\lambda\underline{a})\times\underline{b}=\underline{a}\times(\lambda\underline{b})$.\\
+    3. $\underline{a}\times(\underline{b}+\underline{c})=\underline{a}\times\underline{b}+\underline{a}\times\underline{c}$.\\
+    4. $\underline{a}\times\underline{b}=0\iff\underline{a}\parallel\underline{b}$.\\
+    5. $\underline{b}\perp(\underline{a}\times\underline{b})\perp\underline{a}$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{remark}
+    $\underline{a}\times\underline{b}$ is the vector area of the parallelogram $\underline{0},\underline{a},\underline{b},\underline{a}+\underline{b}$.
+    Its magnitude is the scalar area of that parallelogram.
+    The direction of it then specified the orientation of this parallelogram in space.
+    This gives the significance of vector product.
+\end{remark}
+We fix $\underline{a},\underline{x}$ such that they are perpendicular.
+$\underline{a}\times\underline{x}$ scales $\underline{x}$ by a factor of $|\underline{a}|$ in a different direction.\\
+For easier calculation, we introduce a component expression of the vector product.
+We consider an orthogonal basis $\underline{i},\underline{j},\underline{k}$ which by ordering we have
+$$\underline{i}\times\underline{j}=\underline{k},\underline{j}\times\underline{k}=\underline{i},\underline{k}\times\underline{i}=\underline{j}$$
+This is called an orthonormal right-hand set (basis).\\
+Now, for $\underline{a}=a_1\underline{i}+a_2\underline{j}+a_3\underline{k},\underline{b}=b_1\underline{i}+b_2\underline{j}+b_3\underline{k}$, we have
+$$\underline{a}\times\underline{b}=
+\begin{vmatrix}
+    \underline{i}&\underline{j}&\underline{k}\\
+    a_1&a_2&a_3\\
+    b_1&b_2&b_3
+\end{vmatrix}
+$$
+\subsection{Triple Products}
+\subsubsection{Scalar Triple Product}
+\begin{definition}
+    The scalar triple product of $\underline{a},\underline{b},\underline{c}$ is defined as $\underline{a}\cdot(\underline{b}\times\underline{c})$.
+\end{definition}
+The interpretation of the scalar triple product is that $|\underline{c}\cdot(\underline{a}\times\underline{b})|$ is the volume of parallelopiped constructed by the frame $\underline{a},\underline{b},\underline{c}$.
+This can be shown easily by consider the geometric definitions of dot and cross products.
+The sign of taht expression removing the modulus sign could be interpreted as the sign of volume.
+We say $\underline{a},\underline{b},\underline{c}$ is a right-handed set if $\underline{c}\cdot(\underline{a}\times\underline{b})>0$.
+Note that $\underline{c}\cdot(\underline{a}\times\underline{b})=0$ if and only if $\underline{a},\underline{b},\underline{c}$ are coplanar.\\
+Again, we can write the triple product by the components.
+That is, if $\underline{a}=a_1\underline{i}+a_2\underline{j}+a_3\underline{k},\underline{b}=b_1\underline{i}+b_2\underline{j}+b_3\underline{k},\underline{c}=c_1\underline{i}+c_2\underline{j}+c_3\underline{k}$, then
+$$\underline{a}\cdot(\underline{b}\times\underline{c})=
+\begin{vmatrix}
+    a_1&a_2&a_3\\
+    b_1&b_2&b_3\\
+    c_1&c_2&c_3
+\end{vmatrix}
+$$
+\subsubsection{Vector Triple Product}
+\begin{definition}
+    $$\underline{a}\times(\underline{b}\times\underline{c})=(\underline{a}\cdot\underline{c})\underline{b}-(\underline{a}\cdot\underline{b})\underline{c}$$
+    $$(\underline{a}\times\underline{b})\times\underline{c}=(\underline{a}\cdot\underline{c})\underline{b}-(\underline{b}\cdot\underline{c})\underline{a}$$
+    This is called the vector triple product of vectors $\underline{a},\underline{b},\underline{c}$.
+\end{definition}
+We can check the above works by components by brute force, but we will establish a notation which make things easier later.
+\begin{example}
+    Suppose $\underline{a}=(2,0,-1),\underline{b}=(7,-3,5)$.
+    So $\underline{a}\times\underline{b}=(-3,-17,-6)$.\\
+    We can use the scalar triple product to design a test for coplanarity.
+    Let $\underline{3,-3,7}$ then we do have $\underline{c}\cdot(\underline{a}\times\underline{b})=0$
+\end{example}
+The application of vector triple products, however, will be seen below. 
+\subsection{Lines, Planes and Vector Equations}
+\subsubsection{Lines}
+We can think of vectors as displacements between points.
+The displacement between vectors can be found by vector substraction.
+So the general point on a line through $\underline{a}$ in the direction $\underline{u}\neq\underline{0}$ have the form
+$$\underline{r}=\underline{a}+\lambda\underline{u},\lambda\in\mathbb R$$
+This called the parametric form of a line.\\
+The alternative form of a straight line without a parameter is taken by a cross product
+$$\underline{u}\times(\underline{r}-\underline{a})=\underline{0}$$
+Which literally means that $\underline{r}-\underline{a}=\lambda\underline{u}$ for some real $\lambda$.\\
+Now consider $\underline{u}\times\underline{r}=\underline{c}$.
+So we have $\underline{u}\cdot\underline{c}=0$.
+So if we have $\underline{u}$ and $\underline{c}$ where $\underline{u}\cdot\underline{c}\neq 0$, then it is a contradiction.
+Conversely, if it is really $0$, then we can consider $\underline{u}\times (\underline{u}\times\underline{c})=-|u|^2\underline{c}$.\\
+So it is just a line.
+\subsubsection{Plane}
+The general form of a plane through some position $\underline{a}$ to directions $\underline{u},\underline{v}$ (with $\underline{u}\times\underline{v}\neq\underline{0}$) is
+$$\underline{r}=\underline{a}+\lambda\underline{u}+\mu\underline{v}, \lambda,\mu\in\mathbb R$$
+This is called the parametric form of a plane.\\
+Alternatively, we can ditch the parameters:
+$$(\underline{r}-\underline{a})\cdot(\underline{u}\times\underline{v})=0$$
+Or
+$$\underline{r}\cdot(\underline{u}\times\underline{v})=\kappa$$
+where $\kappa=\underline{a}\cdot(\underline{u}\times\underline{v})$ is a constant.\\
+This form of equation is actually saying that the vector $\underline{r}-\underline{a}$ is always perpendicular to some given normal $\underline{n}=\underline{u}\times\underline{v}$.
+\subsubsection{Vector equations}
+We can have some more general vector equations.
+More generally, a vector equation is some equation of the form $f(\underline{r})=0$.\\
+These can often be solved by dotting or crossing with constant vectors.
+\begin{example}
+    $\underline{r}+\underline{a}\times(\underline{b}\times\underline{r})=\underline{c}$
+    We first expand the vector triple product there,
+    $$\underline{r}+(\underline{a}\cdot\underline{r})\underline{b}-(\underline{a}\cdot\underline{b})\underline{r}=\underline{c}$$
+    Also we have
+    $$\underline{a}\cdot\underline{r}=\underline{a}\cdot\underline{c}$$
+    Note that this is weaker here.
+    Putting it back in the previous equation,
+    $$(1-\underline{a\cdot\underline{b}})\underline{r}+(\underline{a}\cdot\underline{c})\underline{b}=\underline{c}$$
+    So if $\underline{a}\cdot\underline{b}\neq 1$,
+    $$\underline{r}=\frac{\underline{c}-(\underline{a}\cdot\underline{c})\underline{b}}{1-\underline{a\cdot\underline{b}}}$$
+    Otherwise, there is no solution if $\underline{c}-(\underline{a}\cdot\underline{c})\underline{b}\neq 0$.
+    But if it equals $0$, then there are infinitely many solutions.
+\end{example}
+Sometimes more systematically, we look for a solution of the form $\alpha\underline{a}+\beta\underline{b}+\gamma\underline{c}$ where $\underline{a},\underline{b},\underline{c}$ are linearly independent.
+However, sometimes the dotting and crossing method is quicker.\\
+There are many cases when the vector equation may not be linear.
+\begin{example}
+    $\underline{r}\cdot\underline{r}+\underline{r}\cdot\underline{a}=k$.
+    We can try completing the square to get
+    $(\underline{r}+\underline{a}/2)^2=k+\underline{a}^2/4$
+\end{example}
+\subsection{Index/Suffix Notation and the Summation Convention}
+\subsubsection{Index Notation}
+Write vectors $\underline{a},\underline{b},\underline{c},\ldots$ in terms of components $a_i,b_i,c_i,\ldots$ wrt an orthonormal right-handed basis
+$$\underline{e_1},\underline{e_2},\underline{e_3}$$
+The indices $i,j,k,l,p,q,\ldots$ will take value $1,2,3$.
+So
+$$\underline{c}=\alpha\underline{a}+\beta\underline{b}\iff c_i=\alpha a_i+\alpha b_i$$
+$$\underline{x}=\underline{a}+(\underline{b}\cdot\underline{c})\underline{d}\iff x_i=a_j+\sum_kb_kc_kd_j$$
+\begin{definition}
+    The Kronecker $\delta$ is defined as
+    $$\delta_{ij}=\begin{cases}
+        1\text{, if $i=j$}\\
+        0\text{, otherwise}
+    \end{cases}$$
+\end{definition}
+Then note that $\underline{e_i}\cdot\underline{e_j}=\delta_{ij}$ and that $\underline{a}\cdot\underline{b}=(\sum_ia_i\underline{e_i})\cdot(\sum_ja_j\underline{e_j})=\sum_{i,j}a_ib_j\delta_{ij}=\sum_ia_ib_i$.\\
+Now, cross products,
+\begin{definition}
+    The Levi-Civita $\epsilon$ is defined as
+    $$\epsilon_{ijk}=
+    \begin{cases}
+        1\text{, if $(i,j,k)$ is an even permutation of $(1,2,3)$}\\
+        -1\text{, if $(i,j,k)$ is an odd permutation of $(1,2,3)$}\\
+        0\text{, otherwise}
+    \end{cases}$$
+\end{definition}
+$\epsilon_{ijk}=-\epsilon_{jik}=-\epsilon_{ikj}=-\epsilon_{kji}$.
+Note that $\underline{e_i}\times\underline{e_j}=\sum_k\epsilon_{ijk}\underline{e_k}$.\\
+Now we consider $\underline{a}\times\underline{b}$, we have
+\begin{align*}
+    \underline{a}\times\underline{b}
+    &=(\sum_ia_i\underline{e_i})\times(\sum_ja_j\underline{e_j})\\
+    &=\sum_{i,j}a_ib_je_i\times e_j\\
+    &=\sum_{i,j,k}a_ib_j\epsilon_{i,j,k}\underline{e_k}
+\end{align*}
+One can check that it is equivalent to our original form of cross product.
+\subsubsection{Summation Convention}
+Indices that appear twice are usually summed.
+In the summation convention, we could just ignore the sum signs.
+That is, the sum is understood.
+\begin{example}
+    $a_i\delta_{ij}=\sum_ia_i\delta_{ij}=a_j$, so $a_i\delta_{ij}=a_j$\\
+    $\underline{a}\cdot\underline{b}=a_ib_j\delta_{ij}$.\\
+    $\underline{a}\times\underline{b}=a_ib_j\epsilon_{ijk}\underline{e_k}$.\\
+    $\underline{a}\cdot(\underline{b}\times\underline{c})=$.\\
+    $\delta_{ii}=3$.
+\end{example}
+Genuine rules of the convention are as follows.\\
+1. An index appear exactly once must appear in very term of the expression, and every value of it appears.
+This is called a free index.\\
+2. An index occuring exactly twice in a given term is summed over, and is called a repeated/contracted/dummy index.\\
+3. No index appear more than twice.\\
+One application of this notation is to prove the vector triple product identity.
+\begin{lemma}[$\epsilon-\epsilon$ identity]
+    $\epsilon_{ijk}\epsilon_{pqk}=\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp}$
+\end{lemma}
+\begin{proof}
+    Both sides are anti-symmetric, and if any two are the same, then it vanishes.\\
+    So it is enough to consider a particular case.\\
+    If $i=p=1,j=q=2$, the identity hold.\\
+    If $i=q=1,j=p=2$, the identity hold.\\
+    All other index combinations giving nonzero results work similarly.
+\end{proof}
+\begin{proposition}
+    $$\underline{a}\times(\underline{b}\times\underline{c})=(\underline{a}\cdot\underline{c})\underline{b}-(\underline{a}\cdot\underline{b})\underline{c}$$
+\end{proposition}
+\begin{proof}
+    Note that $\epsilon_{ijk}\epsilon_{pqk}=\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp}$
+    \begin{align*}
+        [\underline{a}\times(\underline{b}\times\underline{c})]_i
+        &=\epsilon_{ijk}a_j(\underline{b}\times\underline{c})_k\\
+        &=\epsilon_{ijk}a_j\epsilon_{kpq}b_pc_q\\
+        &=\epsilon_{ijk}\epsilon_{pqk}a_jb_pc_q\\
+        &=(\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp})a_jb_pc_q\\
+        &=\delta_{ip}\delta_{jq}a_jb_pc_q-\delta_{iq}\delta_{jp}a_jb_pc_q\\
+        &=(a_jc_j)b_i-(a_jb_j)c_i
+    \end{align*}
+    So the theorem is proved.
+\end{proof}
+We notice one other thing:
+If we simplify things by letting two indices matching up,  then $\epsilon_{ijk}\epsilon_{pjk}=2\delta_{ip}$.
+Further, $\epsilon_{ijk}\epsilon_{ijk}=6$.

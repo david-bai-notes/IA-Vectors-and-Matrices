@@ -1,0 +1,251 @@
+\section{Change of Bases, Canonical Forms and Symmetries}
+\subsection{Change of Bases in General}
+Recall that given a linear operator $T:V\to W$, we can write its matrix form once we have specified the bases $\{\underline{e_1},\underline{e_2},\ldots,\underline{e_n}\}$ and $\{\underline{f_1},\underline{f_2},\ldots,\underline{f_m}\}$ for $V,W$.
+So $T(\underline{e_i})=A_{ai}\underline{f_a}$ for some matrix $A$,
+For other bases $\{\underline{e_i'}\}$ and $\{\underline{f_i'}\}$ for $V,W$, we have a matrix $A'$ with $T(\underline{e_i'})=A'_{ai}\underline{f_a'}$.
+Suppose the bases are related by $\underline{e_i'}=P_{ji}\underline{e_j}, \underline{f_a'}=Q_{ba}\underline{f_b}$.
+So $P,Q$ are invertible and
+\begin{proposition}
+    $A'=Q^{-1}AP$.
+\end{proposition}
+We say $P,Q$ constitutes a change of bases.
+The column $i$ of $A$ consists of components of $T(\underline{e_i})$ with respect to the basis $\{\underline{f_a}\}$, column $i$ of $P$ consists of components of new basis vectors with respect to the old basis, similar for $Q$.
+\begin{example}
+    Let $\dim V=n=2$, $\dim W=m=3$, and consider the linear map $T$ with $T(\underline{e_1})=\underline{f_1}+2\underline{f_2}-\underline{f_3}$ and $T(\underline{e_2})=-\underline{f_1}+2\underline{f_2}+\underline{f_3}$, so $T$ has matrix
+    $$A=\begin{pmatrix}
+        1&-1\\
+        2&2\\
+        -1&1
+    \end{pmatrix}$$
+    Under these choice of bases.
+    Now consider the new basis $\underline{e_i'}$ for $V$ by
+    $$\underline{e_1'}=\underline{e_1}-\underline{e_2},\underline{e_2'}=\underline{e_1}+\underline{e_2}$$
+    which yields a changes of basis matrix
+    $$P=\begin{pmatrix}
+        1&1\\
+        -1&1
+    \end{pmatrix}$$
+    And a new basis $\underline{f_i'}$ for $W$ is defined by $$\underline{f_1'}=\underline{f_1}-\underline{f_3},\underline{f_2'}=\underline{f_2},\underline{f_3'}=\underline{f_1}+\underline{f_3}$$
+    which has a matrix
+    $$Q=\begin{pmatrix}
+        1&0&1\\
+        0&1&0\\
+        -1&0&1
+    \end{pmatrix}$$
+    So the change of basis formula gives
+    $$A'=Q^{-1}AP=\begin{pmatrix}
+        2&0\\
+        0&4\\
+        0&0
+    \end{pmatrix}$$
+    which can be verified by direct calculation.
+\end{example}
+\begin{proof}
+    For vectors $\underline{y},\underline{x}$ with $\underline{y}=A\underline{x}$ for some invertible matrix (representing a basis) $A$, we denote the components in the respective components by
+    $$X=\begin{pmatrix}
+        x_1\\
+        x_2\\
+        \vdots\\
+        x_n
+    \end{pmatrix},Y=\begin{pmatrix}
+        y_1\\
+        y_2\\
+        \vdots\\
+        y_n
+    \end{pmatrix}$$
+    to avoid confusion.
+    So for a change of basis by matrix $P,Q$, the formula $Y=AX$ turns to $Y'=A'X'$, hence, we have $\underline{x}=x_i\underline{e_i}=x_j'\underline{e_j'}=x_j'(\underline{e_i}P_{ij})=P_{ij}x_j'\underline{e_i}$.
+    Therefore $X=PX'$, similarly $Y=QY'$, so $A'X'=Y'=Q^{-1}Y=Q^{-1}AX=(Q^{-1}AP)X'$, so $A'=Q^{-1}AP$
+\end{proof}
+In the special cases where $V=W$ and the bases are the same for $V,W$ before and after the change of basis, then $A$ is transformed to a matrix similar to $A$ by that change-of-basis matrix.
+Note that this can justify immediately that $\operatorname{tr}A'=\operatorname{tr}A,\det A'=\det A,\chi_{A'}=\chi_A$ for similar matrices $A,A'$.\\
+If $V=W=\mathbb F^n$ where $\mathbb F=\mathbb R$ or $\mathbb C$.
+For a diagonalizable matrix $M$, then by changing the standard basis into the eigenbasis, $M$ becomes diagonal.
+\begin{proof}[Alternative proof]
+    Take the linear map $T$, then
+    $$\underline{f_a}Q_{ab}A'_{bi}=\underline{f_b'}A'_{bi}=T(\underline{e_i'})=T(\underline{e_j}P_{ji})=P_{ji}T(\underline{e_j})=\underline{f_a}A_{aj}P_{ji}$$
+    So $AP=QA'$ by considering the coefficient of $\underline{f_a}$.
+\end{proof}
+\subsection{Jordan Canonical/Normal Form}
+This result classifies complex $n\times n$ matrices up to similarity (i.e. conjugacy classes).
+\begin{proposition}
+    Any $2\times 2$ complex matrix $A$ is similar to one of the followings:
+    $$
+    \begin{pmatrix}
+        \lambda_1&0\\
+        0&\lambda_2
+    \end{pmatrix},\lambda_1\neq\lambda_2;
+    \begin{pmatrix}
+        \lambda&0\\
+        0&\lambda
+    \end{pmatrix};
+    \begin{pmatrix}
+        \lambda&1\\
+        0&\lambda
+    \end{pmatrix}
+    $$
+    Where $\lambda_1,\lambda_2,\lambda\in\mathbb C$.
+\end{proposition}
+\begin{proof}
+    If $A$ is diagonalizable (which includes the case where $\chi_A$ has two distinct roots) then the proposition is immediate.
+    Otherwise, $\chi_A(t)=c(t-\lambda)^2,c\neq 0$ and $\operatorname{null}(A-\lambda I)=1$ and we shall show that $A$ is similar to a matrix of the third form.
+    Indeed, let $\underline{v}$ be an eigenvector for $\lambda$ and $\underline{w}$ any vector that is independent from $\underline{v}$.
+    Then $A\underline{v}=\lambda\underline{v},A\underline{w}=\alpha\underline{v}+\beta\underline{w}$, then the matrix of this transformation under the basis $\underline{v},\underline{w}$ is
+    $$\begin{pmatrix}
+        \lambda&\alpha\\
+        0&\beta
+    \end{pmatrix}$$
+    But then $\beta=\lambda$ by looking at the eigenvalue of matrices of this form, and $\alpha\neq 0$ by assumption.
+    So we can set $\underline{u}=\alpha\underline{v}$, then under the basis $\underline{u},\underline{w}$, we get the matrix of $A$ to be
+    $$\begin{pmatrix}
+        \lambda&1\\
+        0&\lambda
+    \end{pmatrix}$$
+    As claimed.
+\end{proof}
+\begin{proof}[Alternative approach for the third case]
+    If $A$ has characteristic polynomial of the form $\chi_A(t)=c(t-\lambda)^2$ with $c\neq 0$ and $A\neq \lambda I$, then there is some vector $\underline{w}$ with
+    $$(A-\lambda I)\underline{w}=\underline{u}\neq\underline{0}$$
+    but by Cayley-Hamilton, we have
+    $$(A-\lambda I)\underline{u}=(A-\lambda I)^2\underline{w}=\underline{0}$$
+    so $A$ is of the form under the basis $\underline{u},\underline{w}$.
+\end{proof}
+\begin{example}
+    Consider
+    $$A=\begin{pmatrix}
+        1&4\\
+        -1&5
+    \end{pmatrix}$$
+    Then $\lambda=3$ and we can have $\underline{w}=(1,0)^\top$, $\underline{u}=(-2,-1)^\top$, therefore
+    $$\begin{pmatrix}
+        3&1\\
+        0&3
+    \end{pmatrix}=
+    \begin{pmatrix}
+        -2&1\\
+        -1&0
+    \end{pmatrix}^{-1}
+    \begin{pmatrix}
+        1&4\\
+        -1&5
+    \end{pmatrix}
+    \begin{pmatrix}
+        -2&1\\
+        -1&0
+    \end{pmatrix}$$
+\end{example}
+\begin{theorem}
+    Any $n\times n$ complex matrix is similar to a matrix of the form
+    $$A'=
+    \begin{pmatrix}
+        J_{n_1}(\lambda_1)&&\\
+        &\ddots&\\
+        &&J_{n_r}(\lambda_r)
+    \end{pmatrix}$$
+    where $\lambda_1,\ldots,\lambda_r$ are the eigenvalues, $n_1+n_2+\cdots+n_r=n$ and $J_p(\lambda)$, the Jordan Block, is of the form
+    $$J_p(\lambda)=\begin{pmatrix}
+        \lambda&1&&&\\
+        &\lambda&1&&\\
+        &&\lambda&&\\
+        &&&\ddots&1\\
+        &&&&\lambda
+    \end{pmatrix}$$
+\end{theorem}
+\subsection{Quadrics and Conics}
+A quadric in $\mathbb R^n$ is a hypersurface defined by
+$$Q(\underline{x})=\underline{x}^\top A\underline{x}+\underline{b}^\top\underline{x}+c=0$$
+For some real symmetric $n\times n$ matrix $A$, $\underline{b}\in \mathbb R^n,c\in\mathbb R$.
+So $Q(\underline{x})=A_{ij}x_ix_j+b_ix_i+c$.\\
+Consider classifying solutions up to geometrical equivalence, i.e. no distinction up to isometries.
+\begin{theorem}
+    Any isometry in $\mathbb R^n$ is a composition of translation and orthogonal transformation.
+\end{theorem}
+\begin{proof}
+    Trivial.
+\end{proof}
+If $A$ in invertible, we can complete the square.
+We set $\underline{y}=\underline{x}+A^{-1}\underline{b}$, so $\mathcal{F}(\underline{y})=\underline{y}^\top A\underline{y}=Q(\underline{x})-k$ for some constant $k$.
+So $Q(\underline{x})=0\iff \mathcal F(\underline{y})=k$ for some $k$, but the quadratic form is with respect to a new origin.
+In this case, we can diagonalize $\mathcal F$ and change the basis as appropriate and think of them as new coordinate (bases).
+The case in $\mathbb R^3$ has been discussed in the previous sections and we see that the quadrics are ellipsoids and hyperboloids (in $2$ directions).\\
+If $A$ is singular, that is, if $A$ has one or more $0$ eigenvalue, things change.\\
+Back in $\mathbb R^2$, if $A$ is invertible, then by our analysis above, we can write it as a (diagonalized) quadratic form $k=\lambda_1x_1^2+\lambda_2x_2^2$.
+For $\lambda_1,\lambda_2>0$, $k>0$ gives an ellipse, $k=0$ gives a point and $k<0$ no solution.
+For $\lambda_1\lambda_2<0$, so WLOG $\lambda_1>0>\lambda_2$, then we get a hyperbola for any $k\neq 0$, and a pair of lines for $k=0$.\\
+If $\det A=0$, then unless $A$ is zero, we have $\lambda_1\neq 0$ and $\lambda_2=0$, so we diagonaize $A$ in the original formula to get
+$$\lambda_1x_1'^2+b_1'x_1'+b_2'x_2'+c=0\iff \lambda_1x_1''^2+b_2'x_2'+c'=0$$
+By a shift in $x_1$.
+If $b_2'=0$, then we again get a pair of lines for $c'<0$, a single line for $c'=0$ and no solution for $c'>0$.
+Otherwise $b_2'\neq 0$, it gives a parabola.\\
+Note that all these changes of coordinates is prepresented by an isometry.
+They are called conics because these shapes can be obtained by slicing the cone.
+The general form for conics can be expressed in terms of $a,b$ semi-major and semi-minor axes or in terms of length unit $\ell$ and eccentricity $e$.\\
+For ellipses, we have the general form
+$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$$
+WLOG $b>a$, then $b^2=(1-e^2)a^2$ for some $0\le e<1$.
+So we take this $e$ to be the eccentricity.
+So the foci are at $x=\pm ae$.\\
+And for parabola in the form $y^2=4ax$, the focus is at $x=a$ and $e=1$.\\
+For hyperbola, i.e.
+$$\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$$
+So for $b^2=a^2(e^2-1)$ for $e>1$ the eccentricity.
+The foci are $x=\pm ae$.
+\subsection{Symmetries and Transformation Groups}
+Recall from a previous section that $R$ is orthogonal iff $R^\top R=RR^\top=I$ iff it preserves dot products.
+The set of such matrices is a group $\operatorname{O}(n)$.
+Also, given the properties above and the multiplictivity of $\det$, $\det R=\pm 1$.
+And $\operatorname{SO}(n)\le \operatorname{O}(n)$ is the set of orthogonal matrices with determinant $1$.
+While orthogonal matrices preserves lengths, angles and volumns (by alternating forms), special orthogonal matrices also preserves orientation.
+Reflections belongs in $\operatorname{O}(n)\setminus\operatorname{SO}(n)$.
+For a specific $H\in \operatorname{O}(n)\setminus\operatorname{SO}(n)$, any element in $\operatorname{O(n)}$ is of the form $R$ or $RH$ for some $R\in\operatorname{SO}(n)$.
+For example, if $n$ is odd, then we can take $H=-I$
+We can regard the transformation $x_i'=R_{ij}x_j$ in two ways:\\
+The ``active'' way is to say the rotations transform vectors.
+Then $\operatorname{SO}(n)\star\underline{x}$ would be a hypersphere.
+The components $x_i'$ are components of new vector.\\
+By contrast, the ``passive'' point of view is to think about the basis vectors and the vectors that they are mapped to, so $x_i'$ are the components of the same vector $\underline{x}$ wrt a new (rotated) orthonormal basis.
+\subsection{2-Dimensional Minkowski Space and Lorentz Transformations}
+Consider a new ``inner product'' in $\mathbb R^2$ given by
+$$(\underline{x},\underline{y})=x^\top J\underline{y},J=\begin{pmatrix}
+    1&0\\
+    0&-1
+\end{pmatrix}$$
+And also we write $\underline{x}=(x_0,x_1)^\top$ and $\underline{y}=(y_0,y_1)^\top$.
+Note that all original properties of inner products hold except positive definiteness.
+We can choose basis vectors that are orthonormal, which are the standard basis $\underline{e_0},\underline{e_1}$ with $(\underline{e_0},\underline{e_0})=1=-(\underline{e_1},\underline{e_1}), (\underline{e_0},\underline{e_1})=0$.
+\begin{definition}
+    This ``new inner product'' is called the Minkowski metric, and $\mathbb R^2$ equipped with it is called Minkowski space.
+\end{definition}
+Consider
+$$M=\begin{pmatrix}
+    M_{00}&M_{01}\\
+    M_{10}&M_{11}
+\end{pmatrix}$$
+which preserves Minkowski metric if and only if $(M\underline{x},M\underline{y})=(\underline{x},\underline{y})$ if and only if
+$$\underline{x}^\top M^\top JM\underline{y}=\underline{x}^\top J\underline{y}$$
+for any $\underline{x},\underline{y}\in\mathbb R^2$, which happens iff $M^\top JM=J$.
+By taking determinant, $\det(M)=\pm 1$.
+So all such $M$ constitutes a group and has a subgroup with $\det M=1$ and $M_00>0$ is the Lorentz group.\\
+To determine the general form of $M$ in Lorentz group, we can find it by requiring $M\underline{e_0},M\underline{e_1}$ to be orthonormal in this generalized sense, so $M$ is in the general form
+$$M(\theta)=\begin{pmatrix}
+    \cosh\theta&\sinh\theta\\
+    \sinh\theta&\cosh\theta
+\end{pmatrix}$$
+Fixed by $(M\underline{e_0},M\underline{e_0})=1$ and $M_{00}>0$.
+Note that $M(\theta)M(\phi)=M(\theta+\phi)$.\\
+Curves with $(\underline{x},\underline{x})=k$ with $k$ constant are simply hyperbolic.
+Since lengths are preserve, $\underline{x'}=M\underline{x}$ must lie on the same hyperbola.\\
+Physically, we want to set
+$$M(\theta)=\gamma(v)\begin{pmatrix}
+    1&v\\
+    v&1
+\end{pmatrix}$$
+where $v=\tanh\theta$, then $|v|<1$ and $\gamma(v)=(1-v^2)^{-1/2}$
+Then (with $x_0=t$ the time dimension and $x_1=x$ the space parameter)
+$$\begin{cases}
+    t'=\gamma(v)(t+vx)\\
+    x'=\gamma(v)(x+vt)
+\end{cases}$$
+This is the Lorentz Transformation, or boost, relating time and space coordinates for observers moving with relative velocity $v<1$.
+The $\gamma$ factor here implies time dilation and length contraction.
+Note that $M(\theta_3)=M_{\theta_1}M_{\theta_2}$ and $v_i=\tanh(\theta_i)$ gives $v_3=\frac{v_1+v_2}{1+v_1v_2}$ which is consistent with $v<1$.

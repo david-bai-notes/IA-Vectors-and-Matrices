@@ -1,0 +1,158 @@
+\section{The Field of Complex Numbers}
+\subsection{Basic Definitions}
+We construct the complex numbers in the following way:
+\begin{definition}
+    Consider the plane $\mathbb R^2$, we equip it with the \textit{complex multiplication} $\cdot:\mathbb R^2\times\mathbb R^2\to\mathbb R^2$ in a way that:
+    $$(a,b)\cdot(c,d)=(ac-bd,ad+bc)$$
+    If we denote $(x,y)$ by $x+iy$, the resulting field $(\mathbb R^2, +, \cdot, 1, 0)$ is called the complex numebrs, and is denotes by $\mathbb C$.
+\end{definition}
+\begin{proposition}
+    $\mathbb C$ is indeed a field.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+Note that $i^2=-1$
+\begin{definition}
+    The conjugate $\bar z$ or $z^*$ of $z=x+iy\in\mathbb C$ is defined as $x-iy$.
+    The modulus $|z|$ of $z$ is defined as $\sqrt{z\bar z}=\sqrt{x^2+y^2}$.
+    The argument $\arg z$ of $z$ is the angle $\theta$ such that $z=|z|(\cos\theta+i\sin\theta)$, taken mod $2\pi$.
+\end{definition}
+The last expression is called the polar form of a complex number.
+It is obvious that $|zw|=|z||w|$ and that $|z|=|\bar z|$.
+\begin{claim}
+    The argument of any complex number $z$ is defined.
+\end{claim}
+\begin{proof}
+    Trivial.
+\end{proof}
+It is worth to note that $\tan\theta = y/x$.
+Although there are infinitely many angles that can make the equality in the polar form, we often take the principal value, i.e. within $(-\pi,\pi]$.
+But it is the most convenient to take it as a value in $\mathbb R/2\pi\mathbb Z$.\\
+Of course, the complex numbers inherits the geometrical meanings of the plane $\mathbb R^2$. The geometric representation of it is called the Argand diagram.
+On the Argand diagram, the argument is essentially the (anticlockwise) angle between the vector representating the complex number and the positive real axis.
+The modulus, at the same time, is the length of that vector.
+The addition and substraction of the complex numbers are the same as what we did it with 2D vectors (i.e. parallelogram law).\\
+There is an important theorem associated with the polynomial in the complex numbers.
+\begin{theorem}[Fundamental Theorem of Algebra]
+    Any nonconstant polynomial in $\mathbb C$ has a root.
+\end{theorem}
+One should note easily that it is equivalent to say that a nonconstant complex polynomial of order $n$ has exactly $n$ roots.
+The theorem means that the process of field extensions ends at $\mathbb C$.
+\begin{proof}
+    Later.
+\end{proof}
+\begin{proposition}[Triangle Inequality]
+    $|z+w|\le |z|+|w|$
+\end{proposition}
+\begin{proof}
+    Since both sides are positive, it is equivalent to its squared form:
+    $$(z+w)(\bar z+\bar w)\le z\bar z+w\bar w+2|z||w|\iff \frac{1}{2}(z\bar w+\bar zw)\le |z\bar w|$$
+    But this is just to say that $\Re (z\bar w)\le |z\bar w|$, which is true.
+\end{proof}
+\begin{corollary}
+    Replacing $w$ by $w-z$ gives $|w-z|\ge |w|-|z|$.
+    By symmetry $|w-z|\ge |z|-|w|$, so we have the general form
+    $$|w-z|\ge||z|-|w||$$
+\end{corollary}
+\begin{proposition}
+    Let $z_1=r_1(\cos \theta_1+i\sin\theta_1)$ and $z_2=r_2(\cos\theta_2+i\sin\theta_2)$, then
+    $$z_1z_2=r_1r_2(\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2))$$
+    That is, $\arg z_1+\arg z_2=\arg z_1z_2\pmod{2\pi}$
+\end{proposition}
+\begin{proof}
+    Just compound angle formula suffices.
+    It is known to be the De Movrie's Theorem.
+\end{proof}
+\begin{corollary}
+    $(\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta)$
+\end{corollary}
+\begin{proof}
+    Induction shows the case $n\in\mathbb N$, for negative $n=-m$, we have
+    $$\text{LHS}=(\cos(m\theta)+i\sin(m\theta))^{-1}=\cos(m\theta)-i\sin(m\theta)=\text{RHS}$$
+    That establishes it
+\end{proof}
+\subsection{Exponential and Trigonometric Functions}
+\begin{definition}
+    $$e^z:=\sum_{n=0}^\infty \frac{z^n}{n!}$$
+\end{definition}
+The series converges for all $z$ since it absolutely converges.
+Also due to absolute convergence, we can multiply and arrange the series, which gives
+$$e^ze^w=e^{z+w}$$
+Note as well that $e^0=1$ and $(e^z)^n=e^{nz}$ for $n\in\mathbb Z$.
+\begin{definition}
+    $\cos(z)=(e^{iz}+e^{-iz})/2$, which gives the series
+    $$\sum_{n=0}^\infty(-1)^n\frac{z^{2n}}{(2n)!}$$
+    Similarly $\sin(z)=(e^{iz}-e^{-iz})/(2i)$, so its series expansion is
+    $$\sum_{n=0}^\infty(-1)^n\frac{z^{2n+1}}{(2n+1)!}$$
+\end{definition}
+By differentiating the series term by term,
+$$(\sin z)^\prime=\cos z, (\cos z)^\prime =-\sin z, (e^z)^\prime=e^z$$
+\begin{theorem}
+    $$e^{iz}=\cos z+i\sin z$$
+\end{theorem}
+Note that $\cos z$ is not necessarily real, same for $\sin z$.
+But if $z$ is real, they are.
+\begin{lemma}
+    $e^z=1\iff z=2in\pi$ for some $n\in\mathbb Z$.
+\end{lemma}
+\begin{proof}
+    Write $z=x+iy$, then we have
+    $$e^{x+iy}=e^xe^{iy}=e^x(\cos y+i\sin y),x,y\in\mathbb R$$
+    So $e^x\cos y=1$ and $e^x\sin y=0$.
+    Solving it gives $x=0, y=0\pmod{2\pi i}$
+\end{proof}
+We have the following general form of complex number
+$$z=|z|e^{i\arg z}$$
+\subsection{Roots of Unity}
+\begin{definition}
+    $z\in\mathbb C$ is called an $n^{th}$ root of unity if $z^n=1$
+\end{definition}
+To find all solutions to $z^n=1$, we write
+$$z=re^{i\theta}$$
+so $r^n=1$ and $iN\theta=2\pi in$ for some $n\in\mathbb Z$.
+This gives $n$ distinct solutions:
+$$z=e^{2\pi in/N}$$
+where $n\in \{0,1,2,\ldots ,n-1\}$
+The roots of unity lie on the unit circle on the Argand diagram.
+They are the vertices of a regular $n$-gon.
+\subsection{Logarithms and Complex Powers}
+\begin{definition}
+    Define $w=\log z$ by $e^w=z$ since we want $\log$ to be the inverse of $\exp$, which is not injective.
+    So $\log$ is multi-valued.
+    $$\log z=\log|z|+i\arg z\pmod{2\pi i}$$
+    We can, of course, make it single-valued by restricting $\arg z$ to the principal branch $(-\pi,\pi]$ or $[0,2\pi)$.
+    But in this case, we do not have $\log(ab)=\log a+\log b$
+\end{definition}
+In fact, one can prove that it is impossible to choose a $\log$ in the complex plane that lives up to every one of our expectations.
+\begin{example}
+    If $z=-1$, then $\log z=i\pi\pmod{2\pi i}$.
+\end{example}
+\begin{definition}
+    We define $z^\alpha=e^{\alpha\log z}$ for any $\alpha, z\in\mathbb C$ where $z\neq 0$.
+    Note that since $\log$ is multi-valued, the complex powers are multi-valued in general.
+    They differ by a multiplicative factor in the form $e^{2n\pi i\alpha},n\in\mathbb Z$.
+\end{definition}
+If $\alpha\in\mathbb Z$, then the power is single-valued.
+If $\alpha\in\mathbb Q$, it is finite-valued.
+But in general, a complex power admits infinitely many values.
+\begin{example}
+    1. We want to calculate $i^i$. $\log i=\pi/2+2\pi ni$, so
+    $$i^i=e^{i\log i}=e^{-\pi/2+2\pi n}$$
+    where $n\in\mathbb Z$.\\
+    2. We want to calculate $(1+i)^{1/2}$, so it equals
+    $$e^{1/2\log\sqrt 2+i(\pi/4+2n\pi i)}=2^{1/4}e^{i\pi/8}/2$$
+\end{example}
+\subsection{Lines and Circles}
+For a fixed $w\in\mathbb C$ such that $w\neq 0$, the set of points $z=\lambda w$ is a line through the origin in the direction of $w$.\\
+By shifting $z=z_0+\lambda w$ is a line parallel to $z=\lambda w$ though $z_0$.\\
+To write this in the form without the real parameter $\lambda$, we take the conjugate
+$$\bar z=\bar z_0+\lambda\bar w$$
+Conbining the two equations and eleminate $\lambda$, we have $\bar wz-w\bar z=\bar wz_0-w\bar z_0$.
+This is one standard form of the equation of a line (there are others though).\\
+The equation of a circle centered at $c\in\mathbb C$ with radius $\rho$ is given by $|z-c|=\rho$, which is to say
+$$(z-c)(\bar z-\bar c)=\rho^2\iff z\bar z-c\bar z-\bar cz=\rho^2-c\bar c$$
+The general form of a point on the circle is $c+\rho e^{i\theta}$ where $\theta$ is a real parameter.\\
+Note that in the geometrical viewpoint of $\mathbb C$, $z\mapsto z+z_0$ is a translation, $z\mapsto\lambda z$ where $\lambda\in\mathbb R$ is a scaling, $z\mapsto ze^{i\theta}$ where $\theta\in\mathbb R$ is a rotation, $z\mapsto\bar z$ is a translation, $z\mapsto 1/z$ is an inversion.
+Comparing with groups, translation, rotation, scaling, inversion generates the Mobius group which normally acts on $\mathbb C_\infty=\mathbb C\cup\{\infty\}\cong S^2$ by stereographic projection.
+On $\mathbb C_\infty$, lines in $\mathbb C$ are circles.
